@@ -1,17 +1,5 @@
 <body>
-  <div class="container">
-    <header>
-      <h1>Todo List</h1>
-    </header>
- 
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
-  </div>
+	<h1>SmartSelfService</h1>	
+	{{> loginButtons}}
+	{{> atForm state='signIn'}}
 </body>
- 
-<template name="task">
-  <li>{{text}}</li>
-</template>
