@@ -1,0 +1,11 @@
+<template name='home'>
+<h1>SmartSelfService</h1>	
+	{{> loginButtons}}
+	{{#each hello}}
+		{{> write}}
+	{{/each}}
+</template>
+
+<template name='write'>
+	{{text}}
+</template>
