@@ -1,2 +1,8 @@
 opencv-zbar/*
 simple-todos/*
+
+# LockersApp exclude
+lockersApp/.vscode
+lockersApp/build
+lockersApp/connect
+lockersApp/opencv
