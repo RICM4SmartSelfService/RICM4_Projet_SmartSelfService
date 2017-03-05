@@ -18,8 +18,8 @@ typedef struct mongo_instance {
  * @collection_name : the name of the collection on which work
  * @returns a mongo instance ready to use
  */
-mongo_instance_t *init_connection (char *server_adr, char *database_name, char *collection_name) {
-    mongo_instance_t *instance = malloc(sizeof(mongo_instance_t));
+mongo_instance_t *init_connection (const char *server_adr, const char *database_name, const char *collection_name) {
+    mongo_instance_t *instance = new mongo_instance_t;
 
     /*
     * Required to initialize libmongoc's internals
@@ -52,9 +52,9 @@ void destroy_instance (mongo_instance_t *instance) {
 
 int main (int argc, char *argv[])
 {
-    char *server_adr = "mongodb://localhost:27017";
-    char *database_name = "lockers";
-    char *collection_name = "code";
+    const char *server_adr = "mongodb://localhost:27017";
+    const char *database_name = "lockers";
+    const char *collection_name = "code";
 
     mongo_instance_t *instance = init_connection(server_adr, database_name, collection_name);
 

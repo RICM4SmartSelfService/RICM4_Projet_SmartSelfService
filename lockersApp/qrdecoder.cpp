@@ -10,8 +10,6 @@ using namespace std;
 using namespace cv;
 using namespace zbar;
 
-#define DEBUG true
-
 /**
  * QrCode decoding class
  * Implements a video capture with OpenCV
@@ -22,7 +20,7 @@ class QrDecoder {
         int camera = 0; // The webcam ID (0 by default)
         int width, height; // Capture dimensions
         bool decoded = false; 
-        char *window; // Name of the capture window
+        const char *window; // Name of the capture window
         uchar *raw;
     
         ImageScanner scanner; // Image scanner that will analyse the capture
@@ -45,7 +43,7 @@ void QrDecoder::run (char **code) {
     }
 
     // Creation of the debug window
-    window = (char *)("capture");
+    window = "capture";
     namedWindow(window, CV_WINDOW_AUTOSIZE);
 
     // Creation of the scanner
@@ -65,10 +63,10 @@ void QrDecoder::run (char **code) {
 
         int counter = 0;
         for (Image::SymbolIterator symbol = image.symbol_begin(); symbol != image.symbol_end(); ++symbol) {
-            if(DEBUG) {
+            #ifndef NDEBUG
                 cout    << "decoded " << symbol->get_type_name()
                         << " symbol \"" << symbol->get_data() << '"' << endl;
-            }
+            #endif
             
             // transforms the std::string format to a char* format to match with a C program.
             int len = symbol->get_data().length();
@@ -76,22 +74,22 @@ void QrDecoder::run (char **code) {
             strcpy (*code, symbol->get_data().c_str());
                 
             // debug printing to show the potential QRCode location
-            if(DEBUG) {
+            #ifndef NDEBUG
                 if (symbol->get_location_size() == 4) {
                     line(frame, Point(symbol->get_location_x(0), symbol->get_location_y(0)), Point(symbol->get_location_x(1), symbol->get_location_y(1)), Scalar(0, 255, 0), 2, 8, 0);
                     line(frame, Point(symbol->get_location_x(1), symbol->get_location_y(1)), Point(symbol->get_location_x(2), symbol->get_location_y(2)), Scalar(0, 255, 0), 2, 8, 0);
                     line(frame, Point(symbol->get_location_x(2), symbol->get_location_y(2)), Point(symbol->get_location_x(3), symbol->get_location_y(3)), Scalar(0, 255, 0), 2, 8, 0);
                     line(frame, Point(symbol->get_location_x(3), symbol->get_location_y(3)), Point(symbol->get_location_x(0), symbol->get_location_y(0)), Scalar(0, 255, 0), 2, 8, 0);
                 }
-            }
+            #endif
             counter++;
             
             decoded = true;
         }
-        if(DEBUG) {
+        #ifndef NDEBUG
             imshow(window, frame); // print the frame in the capture screen
-        }
-        image.set_data(NULL,0);
+        #endif
+        image.set_data(nullptr,0);
         waitKey(30); // limit frame per second (for the analyze)
     }
 }
