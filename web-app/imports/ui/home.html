@@ -1,11 +1,12 @@
 <template name='home'>
-<h1>SmartSelfService</h1>	
 	{{> loginButtons}}
-	{{#each hello}}
+	<ul>
+	{{#each table}}
 		{{> write}}
 	{{/each}}
+	</ul>
 </template>
 
 <template name='write'>
-	{{text}}
+	<li>{{text}}</li>
 </template>

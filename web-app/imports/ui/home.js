@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
 import './home.html';
 
-Template.body.helpers({
-  hello: [
+Template.home.helpers({
+  table: [
     { text: 'Bonjour' },
     { text: 'Madame' },
     { text: 'Gilles' },

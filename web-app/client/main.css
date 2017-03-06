@@ -1,2 +1,23 @@
 /* CSS declarations go here */
+header {
+	background: #d2edf4;
+	background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+	padding: 15px 15px 15px 15px;
+	position: relative;
+	width:960px;
+	margin:0px auto;
+	border:1px solid #CCC;
+}
+ 
+.monheader {
+	position : relative;
+	left : 50px;
+}
 
+content {
+    width:960px;
+    background: #F0F0F0;
+    border: 1px solid #CCC;
+    height: 2000px;
+    margin: 20px auto;
+}
