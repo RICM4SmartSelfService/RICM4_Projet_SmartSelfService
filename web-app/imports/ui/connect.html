@@ -1,15 +1,52 @@
 <body>
 	<h1>SmartSelfService</h1>
-	{{> loginButtons}}
-	{{> atForm state='signIn'}}
-	{{> register}}
 </body>
 
 <template name="register">
+	<div class="col-xs-12 col-sm-12">
     <h2>Register</h2>
-    <form class="register">
-        <p>Email: <input type="email" name="email"></p>
-        <p>Password: <input type="password" name="password"></p>
-        <p><input type="submit" value="Register"></p>
+    <form class="register form-horizontal" role="form">
+			<div class="form-group">
+				<label for="username" class="col-sm-2">Username</label>
+				<div class="col-sm-10">
+					<input type="text" name="username" class="form-control" id="username">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="firstname" class="col-sm-2">Firstname</label>
+				<div class="col-sm-10">
+					<input type="text" name="firstname" class="form-control" id="firstname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2">Lastname</label>
+				<div class="col-sm-10">
+					<input type="text" name="lastname" class="form-control" id="lastname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="col-sm-2">Email</label>
+	      <div class="col-sm-10">
+					<input type="email" name="email" class="form-control" id="email" >
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2">Password</label>
+				<div class="col-sm-10">
+					<input type="password" name="password" class="form-control" id="password">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password2" class="col-sm-2">Password Checking</label>
+				<div class="col-sm-10">
+					<input type="password" name="password2" class="form-control" id="password2">
+				</div>
+			</div>
+			<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-primary btn-block">Register</button>
+		    </div>
+		  </div>
     </form>
+	</div>
 </template>

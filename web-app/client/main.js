@@ -1,4 +1,6 @@
 import '../imports/ui/home.js';
+import '../imports/ui/search.js';
+import '../imports/ui/connect.js';
 import '../imports/startup/accounts-config.js';
 
 Router.route('/', function () {
@@ -7,4 +9,8 @@ Router.route('/', function () {
 
 Router.route('/register', function () {
   this.render('Register');
+});
+
+Router.route('/search', function () {
+  this.render('Search');
 });

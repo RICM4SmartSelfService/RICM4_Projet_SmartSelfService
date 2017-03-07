@@ -15,10 +15,17 @@ Template.register.events({
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
-        Accounts.createUser({
-            email: email,
-            password: password
-        });
-        Router.go('home');
+        var password2 = $('[name=password2]').val();
+        if(password !== password2) {
+          alert("Les mots de passe ne correspondent pas.");
+        } else {
+          Accounts.createUser({
+              email: email,
+              password: password
+          }, function(error){
+            alert(error)
+          });
+        }
+
     }
 });

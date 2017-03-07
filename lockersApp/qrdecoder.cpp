@@ -70,6 +70,9 @@ void QrDecoder::run (char **code) {
             
             // transforms the std::string format to a char* format to match with a C program.
             int len = symbol->get_data().length();
+            if(*code != nullptr) {
+            	delete[] *code;
+            }
             *code = new char [len+1];
             strcpy (*code, symbol->get_data().c_str());
                 

@@ -1,12 +1,12 @@
 <template name='home'>
-	{{> loginButtons}}
+	<a href="/search">Rechercher</a>
 	<ul>
-	{{#each table}}
+	{{#each lockers}}
 		{{> write}}
 	{{/each}}
 	</ul>
 </template>
 
 <template name='write'>
-	<li>{{text}}</li>
+	<li>{{text}} {{IP}}</li>
 </template>

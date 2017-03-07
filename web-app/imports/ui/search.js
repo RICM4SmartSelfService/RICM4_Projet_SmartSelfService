@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
-import './home.html';
+import './search.html';
 import { Lockers } from '../api/lockers.js';
 
-Template.home.helpers({
+Template.search.helpers({
   lockers() {
     return Lockers.find({});
   },
