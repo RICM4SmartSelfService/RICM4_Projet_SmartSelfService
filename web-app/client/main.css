@@ -21,3 +21,43 @@ content {
     height: 2000px;
     margin: 20px auto;
 }
+
+.query{
+  width:500px;
+  margin:20px;
+  width:230px;
+  position:relative;
+  padding:20px;
+  height:30px;
+}
+
+
+/* ==========================
+   Search Box
+   ========================== */
+
+.queryTerm:focus {
+  width: 175px;
+  background-color:#fff;
+  color: #000;
+  opacity:1;
+  -webkit-box-shadow:1px 1px 9px rgba(0,0,0,0.85);
+  -moz-box-shadow:1px 1px 9px rgba(0,0,0,0.85);
+  box-shadow:1px 1px 9px rgba(0,0,0,0.85);
+  font-weight:800;
+}
+
+.queryTerm{
+padding: 5px 10px;
+background:#ccc;
+color:#444;
+border: 0;
+width: 150px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-webkit-box-shadow:1px 1px 5px rgba(0,0,0,0.65);
+-moz-box-shadow:1px 1px 5px rgba(0,0,0,0.65);
+box-shadow: 1px 1px 5px rgba(0,0,0,0.65);
+outline: 0;
+}

@@ -1,7 +1,12 @@
 <template name='search'>
+	<form class="query">
+        <input class="queryTerm" type="text" name="text" placeholder="Recherche" autocomplete="off"/>
+    </form>
+    
+    <br /> 
 	<ul>
 	{{#each lockers}}
-		{{IP}}
+		<li>{{text}}</li>
 	{{/each}}
 	</ul>
 </template>
