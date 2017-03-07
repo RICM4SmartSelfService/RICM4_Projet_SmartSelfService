@@ -1,13 +1,6 @@
 <template name='home'>
 	{{> loginButtons}}
+	<br /> <br />
 	<a href="/search">Rechercher</a>
-	<ul>
-	{{#each lockers}}
-		{{> write}}
-	{{/each}}
-	</ul>
-</template>
-
-<template name='write'>
-	<li>{{text}} {{IP}}</li>
+	<h3>Bienvenue cher explorateur.</h3>
 </template>

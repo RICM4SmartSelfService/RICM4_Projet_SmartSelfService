@@ -1,12 +1,13 @@
 <template name='search'>
+	<a href="/">Retour</a>
 	<form class="query">
         <input class="queryTerm" type="text" name="text" placeholder="Recherche" autocomplete="off"/>
     </form>
     
-    <br /> 
-	<ul>
+    <br />
+    <ul>
 	{{#each lockers}}
-		<li>{{text}}</li>
+		<li>{{text}} : {{content}}</li>
 	{{/each}}
 	</ul>
 </template>

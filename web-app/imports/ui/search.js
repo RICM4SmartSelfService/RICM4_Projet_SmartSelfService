@@ -7,7 +7,8 @@ import { Session } from 'meteor/session';
 Template.search.helpers({
   lockers() {	
 	var regexp = new RegExp(Session.get('search/keyword'), 'i');
-	return Lockers.find({text : regexp});
+	// Searches in the locker name and content
+	return Lockers.find({ $or : [ {text : regexp} , {content : regexp} ] });
   },
 });
 
