@@ -5,8 +5,7 @@
 	<form class="codeForm">
         <input type="tel" pattern="^[0-9]{4}$" name="code" autocomplete="off"/>
     </form>
-    {{#if unlock}}
-		<h2>Success !</h2>
-    {{/if}}
-    
+    {{#if errorMessage}}
+		<div class="unlock_error">{{errorMessage}}</div>
+    {{/if}}    
 </template>
