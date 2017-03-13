@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 
-import './connect.html';
+import './register.html';
 
 Template.body.helpers({
   tasks: [
@@ -16,14 +16,23 @@ Template.register.events({
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
         var password2 = $('[name=password2]').val();
+        var firstname = $('[name=firstname]').val();
+        var lastname = $('[name=lastname]').val();
         if(password !== password2) {
           alert("Les mots de passe ne correspondent pas.");
         } else {
           Accounts.createUser({
+              //username: username,
               email: email,
-              password: password
+              password: password,
+              profile : {
+                firstname: firstname,
+                lastname: lastname
+              }
           }, function(error){
-            alert(error)
+            if(error != undefined) {
+              alert(error)
+            }
           });
         }
 
