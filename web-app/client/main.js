@@ -3,6 +3,7 @@ import '../imports/ui/search.js';
 import '../imports/ui/unlock.js';
 import '../imports/ui/register.js';
 import '../imports/ui/login.js';
+import '../imports/ui/addLocker.js';
 import '../imports/startup/accounts-config.js';
 
 Router.route('/', function () {
@@ -23,4 +24,12 @@ Router.route('/search', function () {
 
 Router.route('/unlock', function () {
   this.render('Unlock');
+});
+
+Router.route('/addLocker', function() {
+	this.render('AddLocker');
+});
+
+Router.route('/added', function() {
+	this.render('added');
 });

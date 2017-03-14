@@ -4,21 +4,24 @@ import { Lockers } from '../api/lockers.js';
 //import { Session } from 'meteor/session';
 
 var locker;
-var error;
 
 Template.unlock.onCreated(function() {
   this.lastError = new ReactiveVar(null);
+  this.success = new ReactiveVar(null);
 });
 
 
 Template.unlock.helpers({
   locker() { 
 	var id = Router.current().params.query.id;
-	locker = Lockers.findOne({_id: new Mongo.ObjectID(id)});
+	locker = Lockers.findOne({_id: id});
 	return locker;
   },
   errorMessage : function() {
     return Template.instance().lastError.get();
+  },
+  successful : function() {
+    return Template.instance().success.get();
   }
 });
 
@@ -27,6 +30,7 @@ Template.unlock.events({
 		event.preventDefault();
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(locker.code)==0){
+			template.success.set(true);
 			console.log("Correct");
 			template.lastError.set(null);
 		} else {

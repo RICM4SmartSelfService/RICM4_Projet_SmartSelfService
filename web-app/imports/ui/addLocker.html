@@ -1,0 +1,48 @@
+<template name='addLocker'>
+	<a href="/">Home</a>
+	<h1> New Locker</h1>
+	<form class="new-locker">
+		<div class="form-group">
+			<label for="number" class="col-sm-2">Number</label>
+			<div class="col-sm-10">
+				<input type="text"  pattern="^[0-9]*$" name="number" class="form-control" id="number" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="place" class="col-sm-2">Place</label>
+			<div class="col-sm-10">
+				<input type="text" name="place" class="form-control" id="place" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="IP" class="col-sm-2">IP</label>
+			<div class="col-sm-10">
+				<input type="text" name="IP" class="form-control" id="IP" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Content" class="col-sm-2">Content</label>
+			<div class="col-sm-10">
+				<input type="text" name="object" class="form-control" id="object">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Code" class="col-sm-2">Code</label>
+			<div class="col-sm-10">
+				<input type="text" pattern="^[0-9]{4}$" name="code" class="form-control" id="code">
+			</div>
+		</div>
+		<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-primary btn-block">Validate</button>
+		    </div>
+		</div>
+    </form>  
+</template>
+
+<template name="added">
+	<a href="/">Back</a>
+	<h1> Locker successfully added</h1>
+	<div>ID is {{id}}</div>
+	{{> QRCode text=URLcode size="128px"}}
+</template>

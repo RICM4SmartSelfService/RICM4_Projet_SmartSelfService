@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 header {
 	background: #d2edf4;
-	background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+	background-image: linear-gradient(to bottom, #59d8ff, #3789a3 100%);
 	padding: 15px 15px 15px 15px;
 	position: relative;
 	width:960px;
@@ -12,6 +12,7 @@ header {
 .myheader {
 	position : relative;
 	left : 50px;
+	color : white;
 }
 
 content {
@@ -31,6 +32,10 @@ content {
 
 .unlock_error{
 	color : red;
+	margin : 20px;
+}
+.unlock_success{
+	color : green;
 	margin : 20px;
 }
 
