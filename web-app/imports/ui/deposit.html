@@ -1,0 +1,15 @@
+<template name='deposit'>
+	<h1>Select a free locker</h1>
+	<ul>
+	{{#each freeLockers}}
+		{{>locker}}
+	{{/each}}
+	</ul>
+</template>
+
+<template name='locker'>
+	<li>
+		{{number}} : {{place}}
+		<button class="Goto">Select</button>
+	</li>
+</template>
