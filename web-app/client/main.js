@@ -1,5 +1,6 @@
 import '../imports/ui/home.js';
 import '../imports/ui/search.js';
+import '../imports/ui/unlock.js';
 import '../imports/ui/register.js';
 import '../imports/ui/login.js';
 import '../imports/startup/accounts-config.js';
@@ -18,4 +19,8 @@ Router.route('/login', function () {
 
 Router.route('/search', function () {
   this.render('Search');
+});
+
+Router.route('/unlock', function () {
+  this.render('Unlock');
 });

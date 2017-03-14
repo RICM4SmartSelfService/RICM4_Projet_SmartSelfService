@@ -29,6 +29,11 @@ content {
   position:relative;
 }
 
+.unlock_error{
+	color : red;
+	margin : 20px;
+}
+
 
 /* ==========================
    Search Box

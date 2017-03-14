@@ -1,0 +1,11 @@
+<template name='unlock'>
+	<a href="/">Home</a>
+	<h1> Locker {{locker.number}}</h1>
+	<h3>To unlock, enter the 4 digits code</h3>
+	<form class="codeForm">
+        <input type="tel" pattern="^[0-9]{4}$" name="code" autocomplete="off"/>
+    </form>
+    {{#if errorMessage}}
+		<div class="unlock_error">{{errorMessage}}</div>
+    {{/if}}    
+</template>

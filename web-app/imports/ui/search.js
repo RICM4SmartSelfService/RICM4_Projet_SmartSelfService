@@ -8,7 +8,7 @@ Template.search.helpers({
   lockers() {	
 	var regexp = new RegExp(Session.get('search/keyword'), 'i');
 	// Searches in the locker name and content
-	return Lockers.find({ $or : [ {text : regexp} , {content : regexp} ] });
+	return Lockers.find({ $or : [{place : regexp},{object : regexp}] });
   },
 });
 
