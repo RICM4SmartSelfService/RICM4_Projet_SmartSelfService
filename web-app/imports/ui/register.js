@@ -32,6 +32,8 @@ Template.register.events({
           }, function(error){
             if(error != undefined) {
               alert(error)
+            } else {
+              Router.go("/login");
             }
           });
         }
