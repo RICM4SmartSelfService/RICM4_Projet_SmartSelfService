@@ -25,4 +25,9 @@ Template.search.events({
 	// Puts the query in the session
 	Session.set('search/keyword', event.target.value);
 	},
+  'click .Goto' : function(event){
+	console.log(event.target.id);
+	var id = event.target.id;
+	Router.go('/takeoff/'+id);
+  },
 });

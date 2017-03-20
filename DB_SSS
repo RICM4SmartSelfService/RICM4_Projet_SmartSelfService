@@ -1,0 +1,46 @@
+	Lockers :
+	{
+		"_id" : ObjectId("528ba7691738025d11aab772"),
+		"number" : 1,
+		"place" : "FabLab",
+		"IP" : "192.0.0.6",
+		"object” : ObjectID(“...”),
+		“state” : “closed”,
+		"available" : "true",
+		"code" : "1234"
+	}
+
+	Users :
+	{
+		“_id” : ObjectId(“...”),
+		“username” : “toto”,
+		“email” : “toto@mail.com”,
+		“name” : “Jean”,
+		“surname” : “Dupont”,
+		“password” : “zslkdpeo”,
+		“rights” : “admin”,
+		“objects” : [
+			{
+				“_id” : 123,
+				“name” : “hammer”,
+				“description” : “Tool for builders, red, about 30cm”,
+				“left_date” : “13-03-2017 15:02”,
+				“pickup_date” : “25-03-2017 16:05”,
+				“events” : [
+					{
+						“time” : “14-03-2017 02:26”,
+						“action” : “borrowed”,
+						“locker” : ObjectId(“...”),
+						“user” : ObjectId(“...”)
+					},
+					{
+						“time” : “18-03-2017 20:35”,
+						“action” : “returned”,
+						“locker” : ObjectId(“...”),
+						“user” : ObjectId(“...”)
+					}
+				] 
+			}
+		]
+	}
+

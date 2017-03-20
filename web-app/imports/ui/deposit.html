@@ -1,4 +1,5 @@
 <template name='deposit'>
+	<a href="/">Home</a>
 	<h1>Select a free locker</h1>
 	<ul>
 	{{#each freeLockers}}
@@ -10,6 +11,6 @@
 <template name='locker'>
 	<li>
 		{{number}} : {{place}}
-		<button class="Goto">Select</button>
+		<button class="Goto" id="{{_id}}">Select</button>
 	</li>
 </template>
