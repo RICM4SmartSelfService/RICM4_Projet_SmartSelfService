@@ -29,26 +29,34 @@ Template.dropOffObject.events({
 
       const locker = Lockers.findOne({_id: locker_id});
 
-      if(locker != undefined && locker.object == null) {
+      if(locker != undefined && (locker.object == "" || locker.object == undefined)) {
         const obj = Objects.insert({
           name: title,
           description : description,
           left_date : d_now,
-          pickup_date : d_limit
+          pickup_date : d_limit,
+          events : [
+            {
+              time : d_now,
+              action : "reserved",
+              locker : locker_id,
+              user : Meteor.userId()
+            }
+          ]
         }, function (err) {
           if(err != undefined) {
             alert(err);
           } else {
-            console.log(obj._id);
-            Lockers.update(locker, {object:obj._id});
+            console.log(obj);
+            Lockers.update({ _id : locker_id } , {$set : {object : obj }} );
           }
         });
 
-      } else {
-        console.log("Casier non disponible");
-      }
+        Router.go("/");
 
-      console.log(locker);
+      } else {
+        alert("Casier non disponible");
+      }
 
     } else {
       alert("Champs non remplis ou date incorrecte (rentrez une date future).");
