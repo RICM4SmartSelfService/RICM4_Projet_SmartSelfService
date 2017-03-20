@@ -28,7 +28,10 @@ Template.register.events({
               profile : {
                 firstname: firstname,
                 lastname: lastname
-              }
+              },
+              roles : [
+                'user'
+              ]
           }, function(error){
             if(error != undefined) {
               alert(error)
