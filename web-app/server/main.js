@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/lockers.js';
+import '../imports/api/objects.js';
 import '../imports/api/roles.js';
 
 
