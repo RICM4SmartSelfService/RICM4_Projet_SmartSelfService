@@ -4,8 +4,8 @@ import '../imports/ui/unlock.js';
 import '../imports/ui/register.js';
 import '../imports/ui/login.js';
 import '../imports/ui/addLocker.js';
-import '../imports/ui/login.js';
 import '../imports/ui/object/dropoff.js';
+import '../imports/ui/deposit.js';
 import '../imports/startup/accounts-config.js';
 
 Router.route('/', function () {
@@ -38,6 +38,10 @@ Router.route('/added', function() {
 
 Router.route('/object/drop-off',function() {
   this.render('DropOffObject');
+});
+
+Router.route('/deposit', function() {
+	this.render('deposit');
 });
 
 Template.registerHelper( 'currentUser', () => {
