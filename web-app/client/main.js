@@ -37,7 +37,7 @@ Router.route('/added', function() {
 	this.render('added');
 });
 
-Router.route('/object/drop-off',function() {
+Router.route('/object/drop-off/:_id',function() {
   this.render('DropOffObject');
 });
 
