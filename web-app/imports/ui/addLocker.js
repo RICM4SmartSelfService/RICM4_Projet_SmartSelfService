@@ -30,6 +30,7 @@ Template.addLocker.events({
 				IP : IP,
 				object : object,
 				state : "closed",
+				available : true,
 				code : code,
 			}
 		);

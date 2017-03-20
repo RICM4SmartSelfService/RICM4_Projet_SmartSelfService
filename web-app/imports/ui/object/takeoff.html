@@ -1,0 +1,15 @@
+<template name='takeoff'>
+	<a href="/">Home</a>
+	<h1>Locker {{locker.number}}</h1>
+	<ul>
+		<li>Place : {{locker.place}}</li>
+		<li>Content : {{locker.object}}</li>
+	</ul>
+	<button class='Reserve' id="{{locker._id}}">Reserve</button>
+</template>
+
+<template name='reserved'>
+	<a href="/">Home</a>
+	<h1>Locker {{locker.number}} succesfuly reserved</h1>
+	<h2>To unlock put the code : {{locker.code}}</h2>
+</template>

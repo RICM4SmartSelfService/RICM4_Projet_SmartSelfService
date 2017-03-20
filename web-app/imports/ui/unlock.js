@@ -13,7 +13,7 @@ Template.unlock.onCreated(function() {
 
 Template.unlock.helpers({
   locker() { 
-	var id = Router.current().params.query.id;
+	var id = Router.current().params.id;
 	locker = Lockers.findOne({_id: id});
 	return locker;
   },

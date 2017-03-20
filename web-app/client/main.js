@@ -6,6 +6,7 @@ import '../imports/ui/login.js';
 import '../imports/ui/addLocker.js';
 import '../imports/ui/object/dropoff.js';
 import '../imports/ui/deposit.js';
+import '../imports/ui/object/takeoff.js';
 import '../imports/startup/accounts-config.js';
 
 Router.route('/', function () {
@@ -24,7 +25,7 @@ Router.route('/search', function () {
   this.render('Search');
 });
 
-Router.route('/unlock', function () {
+Router.route('/unlock/:id', function () {
   this.render('Unlock');
 });
 
@@ -43,6 +44,14 @@ Router.route('/object/drop-off',function() {
 Router.route('/deposit', function() {
 	this.render('deposit');
 });
+
+Router.route('/takeoff/:id', function() {
+	this.render('takeoff');
+});
+Router.route('/takeoff/:id/reserved', function() {
+	this.render('reserved');
+});
+
 
 Template.registerHelper( 'currentUser', () => {
   return Meteor.user();

@@ -1,14 +1,17 @@
 <template name='search'>
-	<a href="/">Retour</a>
+	<a href="/">Home</a>
 	<form class="query">
-        <input class="queryTerm" type="text" name="text" placeholder="Recherche" autocomplete="off"/>
+        <input class="queryTerm" type="text" name="text" placeholder="Filter" autocomplete="off"/>
     </form>
     
     <br />
     <ul>
 	{{#each lockers}}
 		<li>
-			{{number}} ({{place}}) : {{object}} [{{IP}}]
+			{{number}} ({{place}}) : {{object}} [{{IP}}] {{state}}
+			{{#if available}}
+				<button class="Goto" id="{{_id}}">TakeOff</button>
+			{{/if}}
 		</li>
 	{{/each}}
 	</ul>
