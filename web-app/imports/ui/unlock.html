@@ -1,5 +1,4 @@
 <template name='unlock'>
-	<a href="/">Home</a>
 	<h1> Locker {{locker.number}}</h1>
 	<h3>To unlock, enter the 4 digits code</h3>
 	<form class="codeForm">
@@ -7,8 +6,8 @@
     </form>
     {{#if errorMessage}}
 		<h4 class="unlock_error">{{errorMessage}}</h4>
-    {{/if}}    
+    {{/if}}
     {{#if successful}}
 		<h4 class="unlock_success">Locker {{locker.number}} is unlocked.</h4>
-    {{/if}}   
+    {{/if}}
 </template>
