@@ -8,6 +8,7 @@ Template.actions.helpers({
 	actions() {
 		var Users = Accounts.users;
 		var IDuser = Meteor.userId();
-		return Users.find({_id : userID}).actions;
+		console.log(Users.findOne({_id : IDuser}).actions);
+		return Users.findOne({_id : IDuser}).actions;
 	}
 });
