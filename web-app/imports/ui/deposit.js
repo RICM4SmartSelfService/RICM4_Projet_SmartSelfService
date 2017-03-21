@@ -13,5 +13,7 @@ Template.deposit.helpers({
 Template.locker.events({
 	'click .Goto' : function(event){
 		console.log(event.target.id);
+		var lock_id = event.target.id;
+		Router.go('/object/dropoff/'+lock_id);
 	}
 });

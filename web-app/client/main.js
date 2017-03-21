@@ -41,8 +41,11 @@ Router.route('/added', function() {
 	this.render('added');
 });
 
-Router.route('/object/drop-off/:_id',function() {
+Router.route('/object/dropoff/:_id',function() {
   this.render('DropOffObject');
+});
+Router.route('/object/dropoff/:_id/reserved', function() {
+	this.render('Dropreserved');
 });
 
 Router.route('/deposit', function() {
