@@ -1,9 +1,10 @@
 <template name="dropOffObject">
 	<div class="col-xs-12 col-sm-12">
     <h2>Drop-off an object</h2>
+    <h3>Locker {{locker.number}} in {{locker.place}}</h3>
     <form class="drop-off form-horizontal" role="form">
 			<div class="form-group">
-				<label for="title" class="col-sm-2">Title</label>
+				<label for="title" class="col-sm-2">Name</label>
 	      <div class="col-sm-10">
 					<input type="text" name="title" class="form-control" id="title" >
 				</div>
@@ -30,4 +31,10 @@
 		  </div>
     </form>
 	</div>
+</template>
+
+<template name='Dropreserved'>
+	<a href="/">Home</a>
+	<h1>Locker {{locker.number}} succesfuly reserved for drop off</h1>
+	<h2>To unlock put the code : {{locker.code}}</h2>
 </template>

@@ -12,6 +12,13 @@ Template.dropOffObject.rendered = function(){
     //console.log(Router.current().params);
 };
 
+Template.dropOffObject.helpers({
+	locker(){
+		const locker_id = Router.current().params._id;
+		return Lockers.findOne({_id: locker_id});
+	}
+});
+
 Template.dropOffObject.events({
   'submit form' : function (event) {
     event.preventDefault();
@@ -52,7 +59,7 @@ Template.dropOffObject.events({
           }
         });
 
-        Router.go("/");
+        Router.go('/object/dropoff/'+locker_id+'/reserved');
 
       } else {
         alert("Casier non disponible");
@@ -65,4 +72,11 @@ Template.dropOffObject.events({
 
   }
 
-})
+});
+
+Template.Dropreserved.helpers({
+	locker() {
+		var id = Router.current().params.id;
+		return Lockers.findOne({_id : id});
+	}
+});
