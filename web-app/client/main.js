@@ -1,4 +1,11 @@
-import '../imports/ui/*.js';
+import '../imports/ui/home.js';
+import '../imports/ui/search.js';
+import '../imports/ui/unlock.js';
+import '../imports/ui/register.js';
+import '../imports/ui/login.js';
+import '../imports/ui/addLocker.js';
+import '../imports/ui/menu.js';
+import '../imports/ui/deposit.js';
 import '../imports/ui/object/dropoff.js';
 import '../imports/ui/object/takeoff.js';
 import '../imports/startup/accounts-config.js';
@@ -16,6 +23,9 @@ Router.route('/login', function () {
 });
 
 Router.route('/search', function () {
+  if(!Meteor.user()) {
+    Router.go('/login');
+  }
   this.render('Search');
 });
 
