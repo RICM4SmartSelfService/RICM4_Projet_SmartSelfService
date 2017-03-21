@@ -1,3 +1,5 @@
+import { Session } from 'meteor/session';
+
 import '../imports/ui/home.js';
 import '../imports/ui/search.js';
 import '../imports/ui/unlock.js';
@@ -16,15 +18,22 @@ Router.route('/', function () {
 });
 
 Router.route('/register', function () {
+  if(Meteor.user() != null) {
+    Router.go("/");
+  }
   this.render('Register');
 });
 
 Router.route('/login', function () {
+  if(Meteor.user() != null) {
+    Router.go("/");
+  }
   this.render('Login');
 });
 
 Router.route('/search', function () {
   if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
     Router.go('/login');
   }
   this.render('Search');
@@ -35,35 +44,62 @@ Router.route('/unlock/:id', function () {
 });
 
 Router.route('/addLocker', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('AddLocker');
 });
 
 Router.route('/added', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('added');
 });
 
 Router.route('/object/dropoff/:_id',function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
   this.render('DropOffObject');
 });
 Router.route('/object/dropoff/:_id/reserved', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('Dropreserved');
 });
 
 Router.route('/deposit', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('deposit');
 });
 
 Router.route('/takeoff/:id', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('takeoff');
 });
 Router.route('/takeoff/:id/reserved', function() {
+  if(!Meteor.user()) {
+    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('/login');
+  }
 	this.render('reserved');
 });
 
 Router.route('/actions', function(){
 	this.render('Actions');
 });
-
 
 Template.registerHelper( 'currentUser', () => {
   return Meteor.user();
