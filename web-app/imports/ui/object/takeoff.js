@@ -24,21 +24,21 @@ Template.takeoff.events({
 		Lockers.update(id, {
 			$set: {available : false, "pending" : "take"},
 		});
-		
+
 		// Adding the code into teh pending actions of the user
 		var locker = Lockers.findOne({_id : id});
 		var IDuser = Meteor.userId();
-		Accounts.users.update(IDuser, {
-			{ $push : { 
+		Accounts.users.update(IDuser,
+			{ $push : {
 				"actions" : {
 					"type" : "take",
 					"locker" : id,
 					"code" :  locker.code,
 				}
-			}}
+			}
 		});
-		
-		// Going to the next page		
+
+		// Going to the next page
 		Router.go('/takeoff/'+id+'/reserved');
 	},
 });
