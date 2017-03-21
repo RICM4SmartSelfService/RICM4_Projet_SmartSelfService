@@ -58,7 +58,21 @@ Template.dropOffObject.events({
             Lockers.update({ _id : locker_id } , {$set : {object : obj }} );
           }
         });
-
+        
+        // Adding the code into the pending actions of the user
+		var locker = Lockers.findOne({_id : locker_id});
+		var IDuser = Meteor.userId();
+		Accounts.users.update(IDuser,
+			{ $push : {
+				"actions" : {
+					"type" : "drop",
+					"locker" : locker_id,
+					"code" :  locker.code,
+				}
+			}
+		});
+       
+		// Display a confirmation of the dropoff reservation
         Router.go('/object/dropoff/'+locker_id+'/reserved');
 
       } else {

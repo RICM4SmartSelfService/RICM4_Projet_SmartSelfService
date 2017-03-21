@@ -3,8 +3,9 @@ import { Session } from 'meteor/session';
 import '../imports/ui/home.js';
 import '../imports/ui/search.js';
 import '../imports/ui/unlock.js';
-import '../imports/ui/register.js';
-import '../imports/ui/login.js';
+import '../imports/ui/user/register.js';
+import '../imports/ui/user/login.js';
+import '../imports/ui/user/actions.js';
 import '../imports/ui/addLocker.js';
 import '../imports/ui/menu.js';
 import '../imports/ui/deposit.js';
@@ -94,6 +95,10 @@ Router.route('/takeoff/:id/reserved', function() {
     Router.go('/login');
   }
 	this.render('reserved');
+});
+
+Router.route('/actions', function(){
+	this.render('Actions');
 });
 
 Template.registerHelper( 'currentUser', () => {
