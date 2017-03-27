@@ -4,9 +4,12 @@ import { Objects } from '../../api/objects.js'
 
 import './own.html';
 
-Template.MyObjectsList.rendered = function(){
+Template.MyObjectsList.helpers({
 
-  var myObjs = Objects.find({owner : Meteor.userId()}).fetch();
-  console.log(myObjs);
+  myObjs(){
+    var myObjs = Objects.find({owner : Meteor.userId()}).fetch();
+    console.log(myObjs);
+    return myObjs;
+  },
 
-};
+});

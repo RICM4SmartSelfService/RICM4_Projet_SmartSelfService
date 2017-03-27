@@ -43,7 +43,7 @@ Template.dropOffObject.events({
           left_date : d_now,
           pickup_date : d_limit,
           owner : Meteor.userId(),
-          events : [
+          history : [
             {
               time : d_now,
               action : "reserved",
