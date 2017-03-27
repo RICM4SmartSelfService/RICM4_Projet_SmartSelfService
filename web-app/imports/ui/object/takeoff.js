@@ -22,7 +22,11 @@ Template.takeoff.events({
 		// Getting the lockers id
 		var id = event.target.id;
 		Lockers.update(id, {
-			$set: {available : false, "pending" : "take"},
+			$set: {
+				available : false, 
+				pending : "take",
+				who : Meteor.userId()
+			},
 		});
 
 		// Adding the code into teh pending actions of the user
