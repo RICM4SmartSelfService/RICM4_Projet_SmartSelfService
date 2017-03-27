@@ -7,8 +7,17 @@ import { Session } from 'meteor/session';
 Template.search.helpers({
   lockers() {	
 	var regexp = new RegExp(Session.get('search/keyword'), 'i');
-	// Searches in the locker name and content
-	return Lockers.find({ $or : [{place : regexp},{object : regexp}] });
+	// Searches in the locker name and content but only if it has an object that is pickable
+	return Lockers.find({
+		$and : [
+			{ available : true},
+			{ object : { $exists: true, $ne: null } },
+			{ $or : [
+				{place : regexp},
+				{object : regexp},
+				{number : regexp}
+			]} 
+	]});
   },
 });
 

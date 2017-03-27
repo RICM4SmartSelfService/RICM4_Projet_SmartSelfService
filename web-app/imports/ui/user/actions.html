@@ -1,11 +1,15 @@
 <template name='actions'>
 	<h1>Your pending actions</h1>
-	<ul>
-		{{#each actions}}
-			<li>{{type}} {{>dispaction locker_id=locker}} {{code}}</li>
-			
-		{{/each}}
-	</ul>
+	{{#if actions}}
+		<ul>
+			{{#each actions}}
+				<li>{{type}} {{>dispaction locker_id=locker}} {{code}}</li>
+				
+			{{/each}}
+		</ul>
+	{{else}}
+	No pending actions.
+	{{/if}}
 </template>
 
 <template name='dispaction'>

@@ -38,18 +38,17 @@ Template.unlock.events({
 			var locker = Lockers.findOne({_id: id});
 			console.log(locker.who);
 			var user = Accounts.users.findOne({_id : locker.who});
-			console.log(user);
 			
 			// Updating the locker
 			if(locker.pending == "take"){
 				Lockers.update(id, { $set : {"object" : null}});
 			}
 			
-			
+			// Removing the action from the user's list
 			Accounts.users.update({ _id : user._id},
-                  { $pull: { "actions" : { "locker": id}}});
-			
-			Accounts.users.update(user._id,{ $set : { actions : user.actions}});
+                  { $pull: { "actions" : { "locker" : id}}});
+                  
+            // We free the locker
 			Lockers.update(id, {
 				$set : {
 					"available" : true,
