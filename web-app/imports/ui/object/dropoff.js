@@ -56,7 +56,12 @@ Template.dropOffObject.events({
             alert(err);
           } else {
             console.log(obj);
-            Lockers.update({ _id : locker_id } , {$set : {object : obj }} );
+            Lockers.update({ _id : locker_id } ,
+				{$set : {
+					object : obj,
+					available : false,
+					pending : "drop" }
+			});
           }
         });
 
