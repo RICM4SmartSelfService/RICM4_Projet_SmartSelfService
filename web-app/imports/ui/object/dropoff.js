@@ -42,7 +42,8 @@ Template.dropOffObject.events({
           description : description,
           left_date : d_now,
           pickup_date : d_limit,
-          events : [
+          owner : Meteor.userId(),
+          history : [
             {
               time : d_now,
               action : "reserved",
@@ -64,7 +65,7 @@ Template.dropOffObject.events({
 			});
           }
         });
-        
+
         // Adding the code into the pending actions of the user
 		var locker = Lockers.findOne({_id : locker_id});
 		var IDuser = Meteor.userId();
@@ -77,7 +78,7 @@ Template.dropOffObject.events({
 				}
 			}
 		});
-       
+
 		// Display a confirmation of the dropoff reservation
         Router.go('/object/dropoff/'+locker_id+'/reserved');
 

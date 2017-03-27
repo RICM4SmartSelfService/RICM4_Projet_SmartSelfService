@@ -1,0 +1,12 @@
+<template name='MyObjectsList'>
+
+  <h1>My objects</h1>
+
+  {{#each myObjs}}
+    <h2>{{name}} <small>Pickup on : {{pickup_date}}</small></h2>
+    <p>
+      {{description}}
+    </p>
+  {{/each}}
+
+</template>
