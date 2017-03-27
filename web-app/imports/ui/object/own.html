@@ -9,6 +9,11 @@
         {{description}}
       </p>
       {{status history}}
+      {{#if block}}
+        Item is locked for next pickup
+      {{else}}
+        <button type="button" class="block" value="{{_id}}">LOCK</button>
+      {{/if}}
     {{/if}}
   {{/each}}
 

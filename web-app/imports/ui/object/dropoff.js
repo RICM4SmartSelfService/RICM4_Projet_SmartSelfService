@@ -60,8 +60,7 @@ Template.dropOffObject.events({
 				{$set : {
 					object : obj,
 					available : false,
-					pending : "drop",
-					who : Meteor.userId() }
+					pending : "drop" }
 			});
           }
         });
@@ -71,7 +70,7 @@ Template.dropOffObject.events({
 		var IDuser = Meteor.userId();
 		Accounts.users.update(IDuser,
 			{ $push : {
-				"actions" : {
+				"actions.newfield" : {
 					"type" : "drop",
 					"locker" : locker_id,
 					"code" :  locker.code,
@@ -83,11 +82,11 @@ Template.dropOffObject.events({
         Router.go('/object/dropoff/'+locker_id+'/reserved');
 
       } else {
-        alert("Casier non disponible");
+        alert("Locker not available.");
       }
 
     } else {
-      alert("Champs non remplis ou date incorrecte (rentrez une date future).");
+      alert("Fields not allowed or errounous date (need to be a future one).");
     }
 
 
