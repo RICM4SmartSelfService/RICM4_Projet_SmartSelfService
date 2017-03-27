@@ -64,7 +64,7 @@ Template.dropOffObject.events({
 		var IDuser = Meteor.userId();
 		Accounts.users.update(IDuser,
 			{ $push : {
-				"actions" : {
+				"actions.newfield" : {
 					"type" : "drop",
 					"locker" : locker_id,
 					"code" :  locker.code,
@@ -90,7 +90,7 @@ Template.dropOffObject.events({
 
 Template.Dropreserved.helpers({
 	locker() {
-		var id = Router.current().params.id;
+		var id = Router.current().params._id;
 		return Lockers.findOne({_id : id});
 	}
 });

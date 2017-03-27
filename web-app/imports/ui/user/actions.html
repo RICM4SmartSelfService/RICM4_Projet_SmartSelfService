@@ -1,9 +1,18 @@
 <template name='actions'>
-	<h1>To Do </h1>
+	<h1>Your pending actions</h1>
 	<ul>
 		{{#each actions}}
-			<li>object in locker </li>
+			<li>{{type}} {{>dispaction locker_id=locker}} {{code}}</li>
+			
 		{{/each}}
 	</ul>
+</template>
+
+<template name='dispaction'>
+	{{>dispobject obj_id=locker.object}} in locker {{locker.number}} at {{locker.place}} :
+</template>
+
+<template name='dispobject'>
+	{{object.name}}
 </template>
 

@@ -12,3 +12,16 @@ Template.actions.helpers({
 		}
 	}
 });
+
+Template.dispaction.helpers({
+	locker() {
+		return Lockers.findOne({ _id : this.locker_id});
+	},
+});
+
+Template.dispobject.helpers({
+	object() {
+		return Objects.findOne({_id : this.obj_id});
+	}
+});
+

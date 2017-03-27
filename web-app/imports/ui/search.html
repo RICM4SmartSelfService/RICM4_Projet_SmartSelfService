@@ -7,7 +7,7 @@
     <ul>
 	{{#each lockers}}
 		<li>
-			{{number}} ({{place}}) : {{object}} [{{IP}}] {{state}}
+			{{number}} ({{place}}) : {{>dispobject obj_id=object}} [{{IP}}] {{state}}
 			{{#if available}}
 				<button class="Goto" id="{{_id}}">TakeOff</button>
 			{{/if}}

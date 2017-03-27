@@ -2,7 +2,7 @@
 	<h1>Locker {{locker.number}}</h1>
 	<ul>
 		<li>Place : {{locker.place}}</li>
-		<li>Content : {{locker.object}}</li>
+		<li>Content : {{>dispobject obj_id=locker.object}}</li>
 	</ul>
 	<button class='Reserve' id="{{locker._id}}">Reserve</button>
 </template>

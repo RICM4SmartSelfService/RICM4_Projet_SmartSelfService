@@ -19,19 +19,18 @@ Template.addLocker.events({
         var number = $('[name=number]').val();
         var place = $('[name=place]').val();
         var IP = $('[name=IP]').val();
-        var object = $('[name=object]').val();
-        var code = $('[name=code]').val();
-		
+		var newcode = Math.floor(1000 + Math.random() * 9000).toString();
+		console.log(newcode);
 		
 		var ID = Lockers.insert(
 			{
 				number : number,
 				place : place,
 				IP : IP,
-				object : object,
+				object : null,
 				state : "closed",
 				available : true,
-				code : code,
+				code : newcode,
 			}
 		);
 		Session.set('addLocker/lastID',ID);
