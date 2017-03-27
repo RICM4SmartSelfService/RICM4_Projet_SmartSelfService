@@ -1,5 +1,3 @@
-import { Session } from 'meteor/session';
-
 import '../imports/ui/home.js';
 import '../imports/ui/search.js';
 import '../imports/ui/unlock.js';
@@ -11,6 +9,7 @@ import '../imports/ui/menu.js';
 import '../imports/ui/deposit.js';
 import '../imports/ui/object/dropoff.js';
 import '../imports/ui/object/takeoff.js';
+import '../imports/ui/object/own.js';
 import '../imports/startup/accounts-config.js';
 
 Router.route('/', function () {
@@ -57,6 +56,10 @@ Router.route('/added', function() {
     Router.go('/login');
   }
 	this.render('added');
+});
+
+Router.route('/object/own',function() {
+  this.render('MyObjectsList');
 });
 
 Router.route('/object/dropoff/:_id',function() {
