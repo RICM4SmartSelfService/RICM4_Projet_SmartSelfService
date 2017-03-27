@@ -3,10 +3,13 @@
   <h1>My objects</h1>
 
   {{#each myObjs}}
-    <h2>{{name}} <small>Pickup on : {{pickup_date}}</small></h2>
-    <p>
-      {{description}}
-    </p>
+    {{#if status history != "takeoff"}}
+      <h2>{{name}} <small>Pickup on : {{toDate pickup_date}}</small></h2>
+      <p>
+        {{description}}
+      </p>
+      {{status history}}
+    {{/if}}
   {{/each}}
 
 </template>

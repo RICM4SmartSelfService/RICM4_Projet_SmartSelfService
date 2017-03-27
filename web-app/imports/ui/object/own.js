@@ -12,4 +12,12 @@ Template.MyObjectsList.helpers({
     return myObjs;
   },
 
+  status(history) {
+    return history[history.length-1].action;
+  },
+
+  now() {
+    return new Date().getTime();
+  },
+
 });
