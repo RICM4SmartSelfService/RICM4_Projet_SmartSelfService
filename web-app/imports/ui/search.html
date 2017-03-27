@@ -9,7 +9,9 @@
 		<li>
 			{{number}} ({{place}}) : {{>dispobject obj_id=object}} [{{IP}}] {{state}}
 			{{#if available}}
+				{{#if object}}
 				<button class="Goto" id="{{_id}}">TakeOff</button>
+				{{/if}}
 			{{/if}}
 		</li>
 	{{/each}}
