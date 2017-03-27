@@ -1,7 +1,6 @@
 import { Template } from 'meteor/templating';
 import './unlock.html';
 import { Lockers } from '../api/lockers.js';
-//import { Session } from 'meteor/session';
 
 
 
@@ -37,19 +36,35 @@ Template.unlock.events({
 			
 			var id = Router.current().params.id;
 			var locker = Lockers.findOne({_id: id});
+			console.log(locker.who);
+			var user = Accounts.users.findOne({_id : locker.who});
+			console.log(user);
 			
 			// Updating the locker
 			if(locker.pending == "take"){
-				
-			} else if (locker.pending == "drop"){
-				
+				Lockers.update(id, { $set : {"object" : null}});
 			}
-			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
+			
+			
+			Accounts.users.update({ _id : user._id},
+                  { $pull: { "actions" : { "locker": id}}});
+			
+			Accounts.users.update(user._id,{ $set : { actions : user.actions}});
 			Lockers.update(id, {
+				$set : {
+					"available" : true,
+					"pending" : null,
+					"who" : null
+			}});
+			
+			// Randomly generate a new code
+			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();			
+			Lockers.update(id, { // Adding it into the DB
 				$set : {"code" : newcode}
 			});
 			
 		} else {
+			// Setting an error to display it to the user
 			template.lastError.set("Wrong code");
 		}
 	},

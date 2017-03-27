@@ -59,7 +59,8 @@ Template.dropOffObject.events({
 				{$set : {
 					object : obj,
 					available : false,
-					pending : "drop" }
+					pending : "drop",
+					who : Meteor.userId() }
 			});
           }
         });
@@ -69,7 +70,7 @@ Template.dropOffObject.events({
 		var IDuser = Meteor.userId();
 		Accounts.users.update(IDuser,
 			{ $push : {
-				"actions.newfield" : {
+				"actions" : {
 					"type" : "drop",
 					"locker" : locker_id,
 					"code" :  locker.code,
