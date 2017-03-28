@@ -2,8 +2,6 @@ import { Template } from 'meteor/templating';
 import './unlock.html';
 import { Lockers } from '../api/lockers.js';
 
-
-
 Template.unlock.onCreated(function() {
   this.lastError = new ReactiveVar(null);
   this.success = new ReactiveVar(null);
@@ -36,6 +34,7 @@ Template.unlock.events({
 			
 			var id = Router.current().params.id;
 			var locker = Lockers.findOne({_id: id});
+			console.log(locker);
 			console.log(locker.who);
 			var user = Accounts.users.findOne({_id : locker.who});
 			
@@ -44,10 +43,11 @@ Template.unlock.events({
 				Lockers.update(id, { $set : {"object" : null}});
 			}
 			
-			// Removing the action from the user's list
-			Accounts.users.update({ _id : user._id},
-                  { $pull: { "actions" : { "locker" : id}}});
-                  
+			if(user){
+				// Removing the action from the user's list
+				Accounts.users.update({ _id : user._id},
+					  { $pull: { "actions" : { "locker" : id}}});
+			}
             // We free the locker
 			Lockers.update(id, {
 				$set : {
@@ -62,9 +62,22 @@ Template.unlock.events({
 				$set : {"code" : newcode}
 			});
 			
+			 // Create device
+			var device = new Device(locker.ip);
+			// Set pin 6 to output
+			device.pinMode(5, "OUTPUT");
+			// Put set pin 6 to HIGH
+			device.digitalWrite(5, 1);
+			
+			setTimeout(function(){
+				device.digitalWrite(5, 0);
+			}, 2000);
+			
 		} else {
 			// Setting an error to display it to the user
 			template.lastError.set("Wrong code");
 		}
 	},
 });
+
+
