@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import './unlock.html';
 import { Lockers } from '../api/lockers.js';
+import { HTTP } from 'meteor/http';
 
 Template.unlock.onCreated(function() {
   this.lastError = new ReactiveVar(null);
@@ -29,8 +30,6 @@ Template.unlock.events({
 		event.preventDefault();
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(template.my_locker.get().code)==0){
-			template.success.set(true);
-			template.lastError.set("");
 			
 			var id = Router.current().params.id;
 			var locker = Lockers.findOne({_id: id});
@@ -61,16 +60,18 @@ Template.unlock.events({
 			Lockers.update(id, { // Adding it into the DB
 				$set : {"code" : newcode}
 			});
-			
-			 // Create device
-			var device = new Device(locker.ip);
-			// Set pin 6 to output
-			device.pinMode(5, "OUTPUT");
-			// Put set pin 6 to HIGH
-			device.digitalWrite(5, 1);
+						
+			var url = 'http://' + locker.ip + '/mode/5/o';
+			HTTP.get(url,{},null);
+			url = 'http://' + locker.ip + '/display/5/1';
+			HTTP.get( url,{},function(){
+				template.success.set(true);
+				template.lastError.set("");
+			});
 			
 			setTimeout(function(){
-				device.digitalWrite(5, 0);
+				url = 'http://' + locker.ip + '/display/5/0';
+				HTTP.get(url,{},null);
 			}, 2000);
 			
 		} else {
