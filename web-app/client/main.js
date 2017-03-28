@@ -37,7 +37,7 @@ Router.route('/search', function () {
     Router.go('/login');
   }
   this.render('Search');
-});
+}, {name : 'search'});
 
 Router.route('/unlock/:id', function () {
   this.render('Unlock');
@@ -73,7 +73,7 @@ Router.route('/object',function() {
     Router.go('/login');
   }
   this.render('MyObjectsList');
-});
+}, {name : 'object.list'});
 
 Router.route('/object/dropoff/:_id',function() {
   if(!Meteor.user()) {

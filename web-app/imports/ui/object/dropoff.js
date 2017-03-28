@@ -55,18 +55,18 @@ Template.dropOffObject.events({
           if(err != undefined) {
             alert(err);
           } else {
-            console.log(obj);
+            //console.log(obj);
             Lockers.update({ _id : locker_id } ,
-				{$set : {
-					object : obj,
-					available : false,
-					pending : "drop",
-					who : Meteor.userId() }
-			});
+      				{$set : {
+      					object : obj,
+      					available : false,
+      					pending : "drop",
+      					who : Meteor.userId() }
+      			});
           }
         });
 
-        // Adding the code into the pending actions of the user
+    // Adding the code into the pending actions of the user
 		var locker = Lockers.findOne({_id : locker_id});
 		var IDuser = Meteor.userId();
 		Accounts.users.update(IDuser,

@@ -7,10 +7,10 @@
         {{#unless currentUser}}
         {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/search">Search</a>
+            <a class="nav-link" href="{{pathFor route='search'}}">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/object">My Objects</a>
+            <a class="nav-link" href="{{pathFor route='object.list'}}">My Objects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/actions">My Actions</a>
