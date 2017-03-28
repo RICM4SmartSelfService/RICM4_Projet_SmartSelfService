@@ -11,7 +11,7 @@ Template.unlock.onCreated(function() {
 
 
 Template.unlock.helpers({
-  locker() { 
+  locker() {
 	var id = Router.current().params.id;
 	var res = Lockers.findOne({_id: id});
 	Template.instance().my_locker.set(res);
@@ -30,22 +30,23 @@ Template.unlock.events({
 		event.preventDefault();
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(template.my_locker.get().code)==0){
-			
+
 			var id = Router.current().params.id;
 			var locker = Lockers.findOne({_id: id});
-			console.log(locker);
-			console.log(locker.who);
+			//console.log(locker);
+			//console.log(locker.who);
 			var user = Accounts.users.findOne({_id : locker.who});
-			
+
+      #TODO edit this part when esp8266 is setup + update histo of object
 			// Updating the locker
 			if(locker.pending == "take"){
-				Lockers.update(id, { $set : {"object" : null}});
+				Lockers.update(id, { $set : {object : null, available : true}});
 			}
-			
+
 			if(user){
 				// Removing the action from the user's list
 				Accounts.users.update({ _id : user._id},
-					  { $pull: { "actions" : { "locker" : id}}});
+					  { $pull: { "actions" : {locker : id}}});
 			}
             // We free the locker
 			Lockers.update(id, {
@@ -54,13 +55,13 @@ Template.unlock.events({
 					"pending" : null,
 					"who" : null
 			}});
-			
+
 			// Randomly generate a new code
-			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();			
+			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
 			Lockers.update(id, { // Adding it into the DB
 				$set : {"code" : newcode}
 			});
-						
+
 			var url = 'http://' + locker.ip + '/mode/5/o';
 			HTTP.get(url,{},null);
 			url = 'http://' + locker.ip + '/display/5/1';
@@ -68,17 +69,15 @@ Template.unlock.events({
 				template.success.set(true);
 				template.lastError.set("");
 			});
-			
+
 			setTimeout(function(){
 				url = 'http://' + locker.ip + '/display/5/0';
 				HTTP.get(url,{},null);
 			}, 2000);
-			
+
 		} else {
 			// Setting an error to display it to the user
 			template.lastError.set("Wrong code");
 		}
 	},
 });
-
-
