@@ -12,7 +12,7 @@
         </p>
         {{status history}}
         {{#if block}}
-          Item is locked for next pickup
+          Item is locked for next pickup.
         {{else}}
           <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
         {{/if}}
@@ -21,13 +21,13 @@
   </div>
   <div class="col-sm-6">
     <h1>Borrowed Objects</h1>
-    {{#each myObjs}}
+    {{#each borrowedObjs}}
       <h2>{{name}} <small>Bring back before : {{toDate pickup_date}}</small></h2>
       <p>
         {{description}}
       </p>
-      {{#if bring_back}}
-        Item is locked for next pickup
+      {{#if back}}
+        You will be able to bring back this item as soon as you want.
       {{else}}
         <a href="/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
       {{/if}}

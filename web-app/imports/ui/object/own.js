@@ -7,13 +7,14 @@ import './own.html';
 Template.MyObjectsList.helpers({
 
   myObjs(){
-    var myObjs = Objects.find({owner : Meteor.userId()}).fetch();
+    const myObjs = Objects.find({owner : Meteor.userId()}).fetch();
     //console.log(myObjs);
     return myObjs;
   },
 
   borrowedObjs() {
-    var borrowedObjs = Objects.find({borrower : Meteor.userId()}).fetch();
+    const borrowedObjs = Objects.find({borrower : Meteor.userId()}).fetch();
+    return borrowedObjs;
   },
 
   status(history) {

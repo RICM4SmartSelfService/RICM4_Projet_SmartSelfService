@@ -36,7 +36,7 @@ Template.dropOffObject.events({
 
       const locker = Lockers.findOne({_id: locker_id});
 
-      if(locker != undefined && (locker.object == "" || locker.object == undefined)) {
+      if(locker != undefined && (locker.object == "" || locker.object == undefined || locker.available == true)) {
         const obj = Objects.insert({
           name: title,
           description : description,
@@ -46,7 +46,7 @@ Template.dropOffObject.events({
           history : [
             {
               time : d_now,
-              action : "reserved",
+              action : "drop off reservation",
               locker : locker_id,
               user : Meteor.userId()
             }
@@ -74,13 +74,14 @@ Template.dropOffObject.events({
 				"actions" : {
 					"type" : "drop",
 					"locker" : locker_id,
+          "object" : obj,
 					"code" :  locker.code,
 				}
 			}
 		});
 
 		// Display a confirmation of the dropoff reservation
-        Router.go('/object/dropoff/'+locker_id+'/reserved');
+        Router.go('/locker/reserved/'+ locker_id +'?action=drop');
 
       } else {
         alert("Locker not available.");
@@ -95,9 +96,15 @@ Template.dropOffObject.events({
 
 });
 
-Template.Dropreserved.helpers({
-	locker() {
+Template.DropReserved.helpers({
+
+  locker() {
 		var id = Router.current().params._id;
 		return Lockers.findOne({_id : id});
-	}
+	},
+
+  query(action) {
+    return Router.current().query.action == action;
+  }
+
 });

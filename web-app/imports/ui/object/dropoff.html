@@ -33,7 +33,13 @@
 	</div>
 </template>
 
-<template name='Dropreserved'>
-	<h1>Locker {{locker.number}} successfuly reserved for drop off</h1>
+<template name='DropReserved'>
+	<h1>Locker {{locker.number}} successfuly reserved for
+		{{#if query drop}}
+			drop off
+		{{else if query back}}
+			bring back
+		{{/if}}
+	</h1>
 	<h2>To unlock put the code : {{locker.code}}</h2>
 </template>
