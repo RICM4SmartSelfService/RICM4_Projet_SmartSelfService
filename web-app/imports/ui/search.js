@@ -11,6 +11,7 @@ Template.search.helpers({
 	return Lockers.find({
 		$and : [
 			{ available : true},
+			{ block : { $ne : true} },
 			{ object : { $exists: true, $ne: null } },
 			{ $or : [
 				{place : regexp},

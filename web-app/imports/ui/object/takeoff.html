@@ -1,13 +1,22 @@
 <template name='takeoff'>
 	<h1>Locker {{locker.number}}</h1>
-	<ul>
-		<li>Place : {{locker.place}}</li>
-		<li>Content : {{>dispobject obj_id=locker.object}}</li>
-	</ul>
+	<h3>{{locker.place}}</h3>
+	{{>objectInfo obj_id=locker.object}}	
 	<button class='Reserve' id="{{locker._id}}">Reserve</button>
 </template>
+
+<template name='objectInfo'>
+	<ul>
+		<li>Content : {{object.name}}</li>
+		<li>Description : {{object.description}}</li>
+		<li>Bring back before : {{toDate object.pickup_date}}</li>
+		<li>Owner : {{owner.profile.firstname}} {{owner.profile.lastname}}</li>
+	</ul>
+</template>
+
 
 <template name='reserved'>
 	<h1>Locker {{locker.number}} successfuly reserved</h1>
 	<h2>To unlock put the code : {{locker.code}}</h2>
+	The code is saved under the tab "My Actions".
 </template>
