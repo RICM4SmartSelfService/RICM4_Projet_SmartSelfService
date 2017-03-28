@@ -1,20 +1,39 @@
 <template name='MyObjectsList'>
 
-  <h1>My objects</h1>
+<div class="row">
+  <div class="col-sm-6">
+    <h1>My objects</h1>
 
-  {{#each myObjs}}
-    {{#if status history != "takeoff"}}
-      <h2>{{name}} <small>Pickup on : {{toDate pickup_date}}</small></h2>
+    {{#each myObjs}}
+      {{#if status history != "takeoff"}}
+        <h2>{{name}} <small>Pickup on : {{toDate pickup_date}}</small></h2>
+        <p>
+          {{description}}
+        </p>
+        {{status history}}
+        {{#if block}}
+          Item is locked for next pickup
+        {{else}}
+          <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  </div>
+  <div class="col-sm-6">
+    <h1>Borrowed Objects</h1>
+    {{#each myObjs}}
+      <h2>{{name}} <small>Bring back before : {{toDate pickup_date}}</small></h2>
       <p>
         {{description}}
       </p>
-      {{status history}}
-      {{#if block}}
+      {{#if bring_back}}
         Item is locked for next pickup
       {{else}}
-        <button type="button" class="block" value="{{_id}}">LOCK</button>
+        <a href="/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
       {{/if}}
-    {{/if}}
-  {{/each}}
+    {{/each}}
+  </div>
+</div>
+
 
 </template>
