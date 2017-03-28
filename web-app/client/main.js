@@ -67,7 +67,7 @@ Router.route('/object/bringback/:_id',function() {
   this.render('BringBack');
 });
 
-Router.route('/object/own',function() {
+Router.route('/object',function() {
   if(!Meteor.user()) {
     Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
     Router.go('/login');
@@ -82,12 +82,12 @@ Router.route('/object/dropoff/:_id',function() {
   }
   this.render('DropOffObject');
 });
-Router.route('/object/dropoff/:_id/reserved', function() {
+Router.route('/locker/reserved/:_id', function() {
   if(!Meteor.user()) {
     Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
     Router.go('/login');
   }
-	this.render('Dropreserved');
+	this.render('DropReserved');
 });
 
 Router.route('/deposit', function() {
@@ -124,4 +124,4 @@ Template.registerHelper('currentUser', () => {
 Template.registerHelper('toDate', (date) => {
   var date = new Date(date);
   return date.getDate() + "/" + date.getMonth()+1 + "/" + date.getFullYear();
-})
+});

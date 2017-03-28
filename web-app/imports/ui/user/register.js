@@ -31,7 +31,8 @@ Template.register.events({
               },
               roles : [
                 'user'
-              ]
+              ],
+              actions : []
           }, function(error){
             if(error != undefined) {
               alert(error)

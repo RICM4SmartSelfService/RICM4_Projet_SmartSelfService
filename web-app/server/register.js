@@ -3,8 +3,11 @@ import {Accounts} from 'meteor/accounts-base';
 Accounts.onCreateUser(function(options, user) {
   // We still want the default hook's 'profile' behavior.
   console.log(options);
-  if (options.profile)
+  if (options.profile) {
     user.profile = options.profile;
+  }
+  user.roles = options.roles;
+  user.actions = options.actions;
   return user;
 });
 
