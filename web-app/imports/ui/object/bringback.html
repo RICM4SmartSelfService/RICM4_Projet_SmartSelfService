@@ -1,0 +1,19 @@
+<template name="BringBack">
+
+  <h1>Choose a Locker where to bring back the item.</h1>
+
+  <div id="reminder">
+    <h2>Here is a reminder of the item :</h2>
+    <h3>{{item.name}}</h3>
+    <p>
+      {{item.description}}
+    </p>
+  </div>
+
+  {{#each availableLockers}}
+  <ul>
+    {{>locker}}
+  </ul>
+  {{/each}}
+
+</template>
