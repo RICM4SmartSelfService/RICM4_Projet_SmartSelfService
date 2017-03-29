@@ -100,6 +100,7 @@ Template.unlock.events({
 					console.log('Getting back');
 					Lockers.update(id, {
 						$set : {
+							object : null,
 							available : true,
 							pending : null,
 							who : null
