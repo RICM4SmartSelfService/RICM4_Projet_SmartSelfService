@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import './takeoff.html';
-import { Lockers } from '../../api/lockers.js';
-import { Objects } from '../../api/objects.js';
+import { Lockers } from '/imports/api/lockers.js';
+import { Objects } from '/imports/api/objects.js';
 import { Accounts } from 'meteor/accounts-base';
 
 Template.takeoff.helpers({

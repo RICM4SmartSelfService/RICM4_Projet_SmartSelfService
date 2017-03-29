@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import './addLocker.html';
-import { Lockers } from '../api/lockers.js';
+import { Lockers } from '/imports/api/lockers.js';
 import { Session } from 'meteor/session';
 
 Template.added.helpers({

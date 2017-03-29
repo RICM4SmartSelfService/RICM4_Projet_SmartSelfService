@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import './deposit.html';
-import { Lockers } from '../api/lockers.js';
+import { Lockers } from '/imports/api/lockers.js';
 
 
 Template.deposit.helpers({

@@ -1,7 +1,7 @@
 import '/imports/ui/object/bringback.js';
 import '/imports/ui/object/dropoff.js';
 import '/imports/ui/object/takeoff.js';
-import '/imports/ui/deposit.js';
+import '/imports/ui/object/deposit.js';
 
 Router.route('/object/bringback/:_id',function() {
   if(!Meteor.user()) {

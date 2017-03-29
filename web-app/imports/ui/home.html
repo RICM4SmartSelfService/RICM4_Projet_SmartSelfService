@@ -4,6 +4,8 @@
 		{{#if currentUser}}
 			{{#if isAdmin}}
 			<li><a href="{{pathFor route='locker.new'}}">Add a locker</a></li>
+			<li><a href="{{pathFor route='admin.lockers.display'}}">Display all lockers</a></li>
+			<hr>
 			{{/if}}
 			<li><a href="{{pathFor route='object.dropoff.chooseLocker'}}">Leave an object</a></li>
 			<li><a href="{{pathFor route='user.actions'}}">See my actions</a></li>

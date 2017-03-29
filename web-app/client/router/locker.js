@@ -1,5 +1,5 @@
-import '/imports/ui/unlock.js';
-import '/imports/ui/addLocker.js';
+import '/imports/ui/locker/unlock.js';
+import '/imports/ui/locker/addLocker.js';
 
 Router.route('/locker/unlock/:id', function () {
   this.render('Unlock');

@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import './search.html';
-import { Lockers } from '../api/lockers.js';
-import { Objects } from '../api/objects.js';
+import { Lockers } from '/imports/api/lockers.js';
+import { Objects } from '/imports/api/objects.js';
 import { Session } from 'meteor/session';
 
 

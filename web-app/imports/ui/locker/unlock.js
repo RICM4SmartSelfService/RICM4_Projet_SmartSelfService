@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import './unlock.html';
-import { Lockers } from '../api/lockers.js';
+import { Lockers } from '/imports/api/lockers.js';
 import { HTTP } from 'meteor/http';
 
 Template.unlock.onCreated(function() {
