@@ -100,6 +100,7 @@ Template.unlock.events({
 					console.log('Getting back');
 					Lockers.update(id, {
 						$set : {
+							object : null,
 							available : true,
 							pending : null,
 							who : null
@@ -116,6 +117,29 @@ Template.unlock.events({
 					});		
 					Objects.update(locker.object,{
 						$set : { block : false, back : true }
+					});
+				} else if (locker.pending == "bring back") {
+					console.log('Bringing back');
+					Lockers.update(id, {
+						$set : {
+							available : true,
+							pending : null,
+							who : null
+					}});
+					
+					console.log('Update object');
+					Objects.update(locker.object,{
+						$push : { history : {
+							  time : d_now,
+							  action : "Brought back",
+							  locker : locker._id,
+							  user : Meteor.userId()
+						}}
+					});		
+					Objects.update(locker.object,{
+						$set : {
+							bringback : true,
+							borrower : null }
 					});
 				}
 			} else {

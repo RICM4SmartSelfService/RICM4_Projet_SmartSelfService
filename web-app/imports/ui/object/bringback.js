@@ -8,7 +8,10 @@ import "./bringback.html";
 Template.BringBack.helpers({
 
   availableLockers() {
-    return Lockers.find({available : true});
+    return Lockers.find({
+		available : true,
+		object : null,
+	});
   },
 
   item() {
@@ -20,7 +23,7 @@ Template.BringBack.helpers({
 
 Template.BringBack.events({
 	'click .ChooseLocker' : function(event){
-		const locker_id = event.target.id;
+	const locker_id = event.target.id;
     const item_id = Router.current().params._id;
 
     const item = Objects.findOne({_id:item_id});
@@ -29,20 +32,27 @@ Template.BringBack.events({
     if(item != undefined && item.borrower != undefined && item.borrower == Meteor.userId()) {
 
       if(locker != undefined && (locker.object == "" || locker.object == undefined) && locker.available == true) {
+		  
         Accounts.users.update(Meteor.userId(),
           { $push : {
             "actions" : {
               "type" : "bring back",
               "locker" : locker_id,
-              "object" : item_d,
+              "object" : item_id,
               "code" :  locker.code,
             }
           }
         });
 
-        Lockers.update({_id:locker_id}, {$set: {available:false}});
+        Lockers.update({_id:locker_id}, {
+			$set: {
+				object : item_id,
+				available : false,
+				pending : "bring back",
+				who : Meteor.userId()
+		}});
 
-        const d_nom = new Date();
+        const d_now = new Date();
 
         Objects.update({_id:item_id}, {$push: {
           "history" : {
@@ -51,7 +61,7 @@ Template.BringBack.events({
             locker : locker_id,
             user : Meteor.userId()
           }
-        }, $set : { back:true }});
+        }, $set : { bringback : true }});
 
         Router.go('locker.reserve' , { _id : locker_id } , { query : 'action=back' });
       } else {

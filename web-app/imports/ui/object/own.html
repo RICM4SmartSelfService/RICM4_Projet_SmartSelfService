@@ -60,7 +60,7 @@
     <p>
       {{description}}
     </p>
-    {{#if back}}
+    {{#if bringback}}
     You will be able to bring back this item as soon as you want.
     {{else}}
     <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>

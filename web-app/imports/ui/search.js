@@ -16,12 +16,15 @@ Template.search.helpers({
   			{ block : { $ne : true} }
   		]}).map(function(a){return a._id;});
 
-
+	var not_blocked = Objects.find({
+		 block : { $ne : true}
+  		}).map(function(a){return a._id;});
+  		
   	// Searches in the locker name, number and content but only if it has an object that is pickable (available)
   	return Lockers.find({
   		$and : [
   			{ available : true},
-  			{ object : { $exists: true, $ne: null } },
+  			{ object : { $exists: true, $ne: null, $in : not_blocked } },
   			{ $or : [ // Search for either one of the 3
   				{place : regexp},
   				{number : regexp},
