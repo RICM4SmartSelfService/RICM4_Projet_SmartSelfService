@@ -161,7 +161,12 @@ Template.unlock.events({
 
 		} else if (event.target.code.value.localeCompare(template.my_locker.get().admincode)==0) {
 			template.success.set(true);
-			template.lastError.set("");var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
+			template.lastError.set("");
+			
+			//TODO//
+			// Unlock the locker
+			
+			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
 			Lockers.update(id, { // Adding it into the DB
 				$set : {"admincode" : newcode}
 			});

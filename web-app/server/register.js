@@ -12,8 +12,8 @@ Accounts.onCreateUser(function(options, user) {
 });
 
 Meteor.publish("userData", function () {
-	return Meteor.users.find({_id: this.userId},
-		{fields: {'actions': 1, 'roles' : 1}});
+	return Meteor.users.find({},
+		{fields: {'actions': 1, 'roles' : 1, 'emails' : 1}});
 });
 
 Meteor.users.allow({

@@ -1,1 +1,50 @@
-
+<template name='users'>
+	<table class="table table-striped table-hover">
+		<thead>
+			<th>
+				Name
+			</th>
+			<th>
+				Surname
+			</th>
+			<th>
+				Roles
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				Make admin
+			</th>
+		</thead>
+		<tbody>
+			{{#each users}}
+				<tr>
+					<td>
+						{{profile.firstname}}
+					</td>
+					<td>
+						{{profile.lastname}}
+					</td>
+					<td>
+						{{roles}}
+					</td>
+					<td>
+						{{#each emails}}
+							{{address}}
+						{{/each}}
+					</td>
+					<td>
+						{{#if isadmin _id}}
+							{{#if notme _id}}
+								<button id={{_id}} class='removeAdmin btn btn-xs btn-fail'>Remove admin rights</button>
+							{{/if}}
+						{{else}}
+							<button id={{_id}} class='makeAdmin btn btn-xs btn-success'>Make admin</button>
+						{{/if}}
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
