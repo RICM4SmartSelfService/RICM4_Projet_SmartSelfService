@@ -11,7 +11,11 @@
       panel-default
 
       {{#if block}}
-      panel-warning
+        {{#if available _id}}
+          panel-danger
+        {{else}}
+          panel-warning
+        {{/if}}
       {{/if}}
 
       ">
