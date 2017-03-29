@@ -4,7 +4,7 @@ Template.registerHelper('currentUser', () => {
 
 Template.registerHelper('toDate', (date) => {
   var date = new Date(date);
-  return date.getDate() + "/" + date.getMonth()+1 + "/" + date.getFullYear();
+  return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
 });
 
 Template.registerHelper('isAdmin', () => {

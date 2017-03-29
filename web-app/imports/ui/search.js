@@ -7,29 +7,34 @@ import { Session } from 'meteor/session';
 
 Template.search.helpers({
   lockers() {
-	var regexp = new RegExp(Session.get('search/keyword'), 'i');
+  	var regexp = new RegExp(Session.get('search/keyword'), 'i');
 
-	// Returns the id of all the objects which names are in the regex
-	var objects_id = Objects.find({ name : regexp }).map(function(a){return a._id;});
+  	// Returns the id of all the objects which names are in the regex
+  	var objects_id = Objects.find({ name : regexp }).map(function(a){return a._id;});
 
 
-	// Searches in the locker name, number and content but only if it has an object that is pickable (available)
-	return Lockers.find({
-		$and : [
-			{ available : true},
-			{ block : { $ne : true} },
-			{ object : { $exists: true, $ne: null } },
-			{ $or : [ // Search for either one of the 3
-				{place : regexp},
-				{number : regexp},
-				{object : { $in : objects_id } } // Object with name
-			]}
-	]});
+  	// Searches in the locker name, number and content but only if it has an object that is pickable (available)
+  	return Lockers.find({
+  		$and : [
+  			{ available : true},
+  			{ block : { $ne : true} },
+  			{ object : { $exists: true, $ne: null } },
+  			{ $or : [ // Search for either one of the 3
+  				{place : regexp},
+  				{number : regexp},
+  				{object : { $in : objects_id } } // Object with name
+  			]}
+  	]});
   },
 
   notOwner(object_id) {
     return Objects.findOne({_id:object_id}).owner != Meteor.userId();
-  }
+  },
+
+  getPickupDate(object_id) {
+    const date = new Date(Objects.findOne({_id : object_id}).pickup_date);
+    return date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+  },
 
 });
 

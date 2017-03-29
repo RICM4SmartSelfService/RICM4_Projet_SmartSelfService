@@ -1,12 +1,22 @@
 /* CSS declarations go here */
+body {
+	width:960px;
+	margin: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 header {
 	background: #d2edf4;
 	background-image: linear-gradient(to bottom, #59d8ff, #3789a3 100%);
 	padding: 15px 15px 15px 15px;
 	position: relative;
-	width:960px;
-	margin:0px auto;
 	border:1px solid #CCC;
+}
+
+header, nav {
+	margin-left: -10px;
+	margin-right: -10px;
 }
 
 .myheader {
@@ -41,4 +51,8 @@ content {
 .unlock_success{
 	color : green;
 	margin : 20px;
+}
+
+.align-right {
+	float: right;
 }

@@ -12,7 +12,7 @@ Template.unlock.onCreated(function() {
 
 Template.unlock.helpers({
   locker() {
-	var id = Router.current().params.id;
+	var id = Router.current().params._id;
 	var res = Lockers.findOne({_id: id});
 	Template.instance().my_locker.set(res);
 	return res;
@@ -31,7 +31,7 @@ Template.unlock.events({
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(template.my_locker.get().code)==0){
 			
-			var id = Router.current().params.id;
+			var id = Router.current().params._id;
 			var locker = Lockers.findOne({_id: id});
 			
 			var url = 'http://' + locker.IP + '/mode/5/o';

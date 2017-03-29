@@ -6,7 +6,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 Template.takeoff.helpers({
 	locker() {
-		var id = Router.current().params.id;
+		var id = Router.current().params._id;
 		return Lockers.findOne({_id : id});
 	}
 });
@@ -23,7 +23,7 @@ Template.objectInfo.helpers({
 
 Template.reserved.helpers({
 	locker() {
-		var id = Router.current().params.id;
+		var id = Router.current().params._id;
 		return Lockers.findOne({_id : id});
 	}
 });

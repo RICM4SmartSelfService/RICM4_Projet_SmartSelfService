@@ -9,7 +9,7 @@ Template.actions.helpers({
 		var user = Meteor.user();
 		if(user){
 			if(user.actions){
-				return user.actions;				
+				return user.actions;
 			}
 		}
 		return [];
@@ -27,4 +27,3 @@ Template.dispobject.helpers({
 		return Objects.findOne({_id : this.obj_id});
 	}
 });
-
