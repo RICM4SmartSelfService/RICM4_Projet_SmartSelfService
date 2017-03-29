@@ -80,7 +80,7 @@ Template.dropOffObject.events({
 		});
 
 		// Display a confirmation of the dropoff reservation
-        Router.go('/locker/reserved/'+ locker_id +'?action=drop');
+        Router.go('locker.reserve' , { _id : locker_id } , { query : 'action=drop' });
 
       } else {
         alert("Locker not available.");

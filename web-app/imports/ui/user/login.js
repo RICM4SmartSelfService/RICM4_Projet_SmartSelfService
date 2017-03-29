@@ -12,7 +12,7 @@ Template.login.events({
           if(error != undefined) {
             alert(error);
           } else {
-            Router.go("/");
+            Router.go("home");
           }
         });
     }

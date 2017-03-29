@@ -29,7 +29,7 @@
       {{#if back}}
         You will be able to bring back this item as soon as you want.
       {{else}}
-        <a href="/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
+        <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
       {{/if}}
     {{/each}}
   </div>

@@ -53,7 +53,7 @@ Template.BringBack.events({
           }
         }, $set : { back:true }});
 
-        Router.go('/locker/reserved/'+ locker_id +'?action=back');
+        Router.go('locker.reserve' , { _id : locker_id } , { query : 'action=back' });
       } else {
         console.log(locker);
         alert("[Error] : Locker not available.");
@@ -71,7 +71,7 @@ Template.BringBack.rendered = function() {
   console.log(item);
   if( item == undefined || item.back == true) {
     alert("This object can't be brought back or is already in wait to be.");
-    Router.go("/object");
+    Router.go("user.objects");
   }
 
 }

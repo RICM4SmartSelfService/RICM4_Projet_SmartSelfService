@@ -1,5 +1,4 @@
 <template name='addLocker'>
-	<a href="/">Home</a>
 	<h1> New Locker</h1>
 	<form class="new-locker">
 		<div class="form-group">
@@ -25,11 +24,10 @@
 		      <button type="submit" class="btn btn-primary btn-block">Validate</button>
 		    </div>
 		</div>
-    </form>  
+    </form>
 </template>
 
 <template name="added">
-	<a href="/">Back</a>
 	<h1> Locker successfully added</h1>
 	<div>ID is {{id}}</div>
 	{{> QRCode text=URLcode size="128px"}}

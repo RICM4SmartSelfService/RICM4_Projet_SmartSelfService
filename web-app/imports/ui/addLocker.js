@@ -9,19 +9,19 @@ Template.added.helpers({
 	},
 	URLcode(){
 		return 'http://localhost:3000/unlock?id='+Session.get('addLocker/lastID');
-	},	
+	},
 });
 
 Template.addLocker.events({
 	'submit .new-locker' : function(event, template) {
 		event.preventDefault();
-				
+
         var number = $('[name=number]').val();
         var place = $('[name=place]').val();
         var IP = $('[name=IP]').val();
 		var newcode = Math.floor(1000 + Math.random() * 9000).toString();
 		console.log(newcode);
-		
+
 		var ID = Lockers.insert(
 			{
 				number : number,
@@ -34,7 +34,7 @@ Template.addLocker.events({
 			}
 		);
 		Session.set('addLocker/lastID',ID);
-		
-		Router.go('/added');
+
+		Router.go('locker.new.confirmation');
 	},
 });

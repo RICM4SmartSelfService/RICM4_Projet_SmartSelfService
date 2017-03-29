@@ -34,7 +34,7 @@ Template.takeoff.events({
 		var id = event.target.id;
 		Lockers.update(id, {
 			$set: {
-				available : false, 
+				available : false,
 				pending : "take",
 				who : Meteor.userId()
 			},
@@ -54,6 +54,6 @@ Template.takeoff.events({
 		});
 
 		// Going to the next page
-		Router.go('/takeoff/'+id+'/reserved');
+		Router.go('object.takeoff', { _id : id });
 	},
 });

@@ -3,10 +3,10 @@
 	<ul>
 		{{#if currentUser}}
 			{{#if isAdmin}}
-			<li><a href="/addLocker">Add a locker</a></li>
+			<li><a href="{{pathFor route='locker.new'}}">Add a locker</a></li>
 			{{/if}}
-			<li><a href="/deposit">Leave an object</a></li>
-			<li><a href="/actions">See my actions</a></li>
+			<li><a href="{{pathFor route='object.dropoff.chooseLocker'}}">Leave an object</a></li>
+			<li><a href="{{pathFor route='user.actions'}}">See my actions</a></li>
 		{{/if}}
 	</ul>
 </template>

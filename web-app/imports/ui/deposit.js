@@ -23,6 +23,6 @@ Template.deposit.events({
 	'click .ChooseLocker' : function(event){
 		console.log(event.target.id);
 		var lock_id = event.target.id;
-		Router.go('/object/dropoff/'+lock_id);
+		Router.go('object.dropoff', { _id : lock_id });
 	}
 });
