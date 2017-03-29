@@ -11,12 +11,21 @@
           {{description}}
         </p>
         {{status history}}
-        {{#if block}}
-          Item is locked for next pickup.
-        {{else}}
-          <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
-        {{/if}}
-      {{/if}}
+        <!-- If the item is not brougth back --> 
+        {{#unless back}}
+			<!-- blocked and available, display the "GET IT BACK" button -->
+			{{#if block}}
+				{{#if available _id}}
+				Item is available and blocked for you. 
+				<button type="button" class="getBack btn btn-success" value="{{_id}}">GET IT BACK</button>
+				{{else}}
+					Item is locked for next pickup.
+				{{/if}}
+			{{else}}
+			  <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
+			{{/if}}
+		{{/unless}}
+	  {{/if}}
     {{/each}}
   </div>
   <div class="col-sm-6">

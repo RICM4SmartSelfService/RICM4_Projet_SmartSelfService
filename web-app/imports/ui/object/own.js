@@ -24,22 +24,59 @@ Template.MyObjectsList.helpers({
   now() {
     return new Date().getTime();
   },
+  
+  // Returns if the object is in an available locker
+  available(obj_id){
+	return Lockers.findOne({object : obj_id}).available;
+  }
 
 });
 
 Template.MyObjectsList.events({
+	// Blocks an object so that you can come back and pick it up
 	'click .block' : function(event){
 		var id = event.target.value;
-    const item = Objects.findOne({_id:id});
-    if(item.owner == Meteor.userId()) {
-      Objects.update({_id:id}, {
-        $set: {
-          block:true
-        }
-      });
-      alert("Item locked. You'll be able to pick it up next time it's available.");
-    } else {
-      alert("You are not owner of this item.")
-    }
-  }
+		const item = Objects.findOne({_id:id});
+		if(item.owner == Meteor.userId()) {
+			Objects.update({_id:id}, {
+			$set: {
+			  block:true
+			}
+			});
+			alert("Item locked. You'll be able to pick it up next time it's available.");
+		} else {
+			alert("You are not the owner of this item.")
+		}
+	},
+	// Reserve and object for user to get back (out of the system)
+	'click .getBack' : function(event){
+		var id = event.target.value;
+		const item = Objects.findOne({_id:id});
+		if(item.owner == Meteor.userId()) {
+			var locker = Lockers.findOne({object : id});
+			var IDuser = Meteor.userId();
+			// Add action into the user DB
+			Accounts.users.update(IDuser,
+				{ $push : {
+					"actions" : {
+						"type" : "get back",
+						"locker" : locker._id,
+						"code" :  locker.code,
+					}
+				}
+			});
+			
+			// Update locker
+			Lockers.update(locker._id,{
+				$set : {
+					available : false,
+					pending : "get back",
+					who : IDuser,
+				}
+			});
+			alert("You can now go take your object. The code is under Your Actions")
+		} else {
+			alert("You are not the owner of this item.")
+		}
+	}
 });

@@ -43,7 +43,7 @@ Router.route('/object/takeoff/:_id', function() {
 	this.render('takeoff');
 }, { name : 'object.takeoff' });
 
-Router.route('/object/takeoff/reserved/:id', function() {
+Router.route('/object/takeoff/reserved/:_id', function() {
   if(!Meteor.user()) {
     alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
