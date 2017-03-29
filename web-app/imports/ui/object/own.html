@@ -11,7 +11,11 @@
       panel-default
 
       {{#if block}}
-      panel-warning
+        {{#if available _id}}
+          panel-success
+        {{else}}
+          panel-warning
+        {{/if}}
       {{/if}}
 
       ">
@@ -35,12 +39,12 @@
         {{#if block}}
           {{#if available _id}}
             Item is available and blocked for you.
-            <button type="button" class="getBack btn btn-success" value="{{_id}}">GET IT BACK</button>
+            <button type="button" class="getBack btn btn-xs btn-success align-right" value="{{_id}}">GET IT BACK</button>
           {{else}}
             Item is locked for next pickup.
           {{/if}}
         {{else}}
-          <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
+          <button type="button" class="block btn btn-xs btn-danger align-right" value="{{_id}}">LOCK</button>
         {{/if}}
         {{/unless}}
       </div>
