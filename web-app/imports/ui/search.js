@@ -6,7 +6,7 @@ import { Session } from 'meteor/session';
 
 
 Template.search.helpers({
-  lockers() {	
+  lockers() {
 	var regexp = new RegExp(Session.get('search/keyword'), 'i');
 	
 	// Returns the id of all the objects which names are in the regex
@@ -26,6 +26,11 @@ Template.search.helpers({
 			]} 
 	]});
   },
+
+  notOwner(object_id) {
+    return Objects.findOne({_id:object_id}).owner != Meteor.userId();
+  }
+
 });
 
 Template.search.events({
@@ -34,7 +39,7 @@ Template.search.events({
 	event.preventDefault();
 	// Puts the query in the session
 	Session.set('search/keyword', event.target.text.value);
-	
+
   },
   // For researching as soon as the input changes
   'keyup .queryTerm': function(event) {
