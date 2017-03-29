@@ -1,19 +1,39 @@
-<template name="BringBack">
+  <template name="BringBack">
 
-  <h1>Choose a Locker where to bring back the item.</h1>
+    <h1>Choose a Locker where to bring back the item.</h1>
 
-  <div id="reminder">
-    <h2>Here is a reminder of the item :</h2>
-    <h3>{{item.name}}</h3>
-    <p>
-      {{item.description}}
-    </p>
-  </div>
+    <div id="reminder">
+      <h2>Here is a reminder of the item :</h2>
+      <h3>{{item.name}}</h3>
+      <p>
+        {{item.description}}
+      </p>
+    </div>
 
-  {{#each availableLockers}}
-  <ul>
-    {{>locker}}
-  </ul>
-  {{/each}}
+    <div class="row">
+  		<div class="col-md-3"></div>
+    		<div class="col-md-6">
+    			<table class="table table-striped table-hover">
+    				<thead>
+    					<th>
+    						ID
+    					</th>
+    					<th>
+    						Place
+    					</th>
+    					<th>
+    						Choose
+    					</th>
+    				</thead>
+    				<tbody>
 
-</template>
+            {{#each availableLockers}}
+              {{>locker}}
+            {{/each}}
+          </tbody>
+          </table>
+        </div>
+      <div class="col-md-3"></div>
+    </div>
+
+  </template>

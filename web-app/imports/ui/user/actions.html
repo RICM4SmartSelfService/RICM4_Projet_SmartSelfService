@@ -1,18 +1,55 @@
 <template name='actions'>
 	<h1>Your pending actions</h1>
 	{{#if actions}}
-		<ul>
+	<table class="table table-striped table-hover">
+		<thead>
+			<th>
+				Action to do
+			</th>
+			<th>
+				Locker ID
+			</th>
+			<th>
+				Place
+			</th>
+			<th>
+				Content
+			</th>
+			<th>
+				Code to unlock
+			</th>
+		</thead>
+		<tbody>
 			{{#each actions}}
-				<li>{{type}} {{>dispaction locker_id=locker}} {{code}}</li>
+				<tr>
+					<td>
+						{{type}}
+					</td>
+
+					{{>dispaction locker_id=locker}}
+
+					<td>
+						{{code}}
+					</td>
+				</tr>
 			{{/each}}
-		</ul>
+		</tbody>
+	</table>
 	{{else}}
 	No pending actions.
 	{{/if}}
 </template>
 
 <template name='dispaction'>
-	{{>dispobject obj_id=locker.object}} in locker {{locker.number}} at {{locker.place}} :
+	<td>
+		{{locker.number}}
+	</td>
+	<td>
+		{{locker.place}}
+	</td>
+	<td>
+		{{>dispobject obj_id=locker.object}}
+	</td>
 </template>
 
 <template name='dispobject'>
