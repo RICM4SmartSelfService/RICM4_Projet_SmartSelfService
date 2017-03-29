@@ -32,5 +32,7 @@
 	<a href="/">Back</a>
 	<h1> Locker successfully added</h1>
 	<div>ID is {{id}}</div>
-	{{> QRCode text=URLcode size="128px"}}
+	<div class='QRcode'>
+		{{> QRCode text=URLcode size="128px"}}
+	</div>
 </template>
