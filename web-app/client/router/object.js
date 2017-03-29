@@ -5,7 +5,7 @@ import '/imports/ui/object/deposit.js';
 
 Router.route('/object/bringback/:_id',function() {
   if(!Meteor.user()) {
-    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
   }
   this.render('BringBack');
@@ -13,7 +13,7 @@ Router.route('/object/bringback/:_id',function() {
 
 Router.route('/object/dropoff/:_id',function() {
   if(!Meteor.user()) {
-    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
   }
   this.render('DropOffObject');
@@ -21,7 +21,7 @@ Router.route('/object/dropoff/:_id',function() {
 
 Router.route('/object/deposit', function() {
   if(!Meteor.user()) {
-    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
   }
 	this.render('deposit');
@@ -29,7 +29,7 @@ Router.route('/object/deposit', function() {
 
 Router.route('/object/takeoff/:_id', function() {
   if(!Meteor.user()) {
-    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
   }
 	this.render('takeoff');
@@ -37,7 +37,7 @@ Router.route('/object/takeoff/:_id', function() {
 
 Router.route('/object/takeoff/reserved/:id', function() {
   if(!Meteor.user()) {
-    Session.set("err", "Vous devez vous connecter avant d'effectuer cette action");
+    alert("Vous devez vous connecter avant d'effectuer cette action");
     Router.go('user.login');
   }
 	this.render('reserved');
