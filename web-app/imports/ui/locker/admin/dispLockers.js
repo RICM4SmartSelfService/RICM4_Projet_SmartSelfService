@@ -35,5 +35,25 @@ Template.dispLockers.events({
   'keyup .queryTerm': function(event) {
 	// Puts the query in the session
 	Session.set('dispLockers/keyword', event.target.value);
+	},
+});
+
+Template.dispQR.helpers({
+	URL(){
+		return 'http://localhost:3000/unlock/'+this.id;
+	},
+	showQR(){
+		console.log(this.id);
+		return (this.id==Session.get('dispLockers/QRid'));
 	}
+});
+
+Template.dispQR.events({
+  'click .toggleQR' : function(event){
+	if(this.id==Session.get('dispLockers/QRid')){
+		Session.set('dispLockers/QRid',null);
+	} else {
+		Session.set('dispLockers/QRid',this.id);
+	}
+  },
 });

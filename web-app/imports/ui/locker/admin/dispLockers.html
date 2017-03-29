@@ -18,7 +18,19 @@
 			{{else}}
 				Action pending : {{pending}}
 			{{/if}}
+			{{> dispQR id=_id}}
 		</li>
 	{{/each}}
 	</ul>
+</template>
+
+<template name='dispQR'>
+	{{#if showQR}}
+		<button class='toggleQR'>Hide QR code</button>
+		<div class='QRcode'>
+			{{> QRCode text=URL size="128px"}}
+		</div>
+	{{else}}
+		<button class='toggleQR'>Show QR code</button>
+	{{/if}}
 </template>
