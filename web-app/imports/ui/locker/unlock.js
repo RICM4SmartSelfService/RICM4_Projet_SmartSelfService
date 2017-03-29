@@ -14,7 +14,9 @@ Template.unlock.onCreated(function() {
 Template.unlock.helpers({
   locker() {
 	var id = Router.current().params._id;
+	console.log(id);
 	var res = Lockers.findOne({_id: id});
+	console.log(res);
 	Template.instance().my_locker.set(res);
 	return res;
   },
