@@ -11,14 +11,16 @@
     <br />
     <ul>
 	{{#each lockers}}
-		<li>
-			{{number}} ({{place}}) : {{>dispobject obj_id=object}} [{{IP}}] {{state}}
-			{{#if available}}
-				{{#if object}}
-				<button class="Goto" id="{{_id}}">TakeOff</button>
+		{{#if notOwner object}}
+			<li>
+				{{number}} ({{place}}) : {{>dispobject obj_id=object}} [{{IP}}] {{state}}
+				{{#if available}}
+					{{#if object}}
+						<button class="Goto" id="{{_id}}">TakeOff</button>
+					{{/if}}
 				{{/if}}
-			{{/if}}
-		</li>
+			</li>
+		{{/if}}
 	{{/each}}
 	</ul>
 </template>

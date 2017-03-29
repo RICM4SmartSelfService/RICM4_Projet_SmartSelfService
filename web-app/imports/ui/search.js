@@ -1,11 +1,12 @@
 import { Template } from 'meteor/templating';
 import './search.html';
 import { Lockers } from '../api/lockers.js';
+import { Objects } from '../api/objects.js';
 import { Session } from 'meteor/session';
 
 
 Template.search.helpers({
-  lockers() {	
+  lockers() {
 	var regexp = new RegExp(Session.get('search/keyword'), 'i');
 	// Searches in the locker name and content but only if it has an object that is pickable
 	return Lockers.find({
@@ -17,9 +18,14 @@ Template.search.helpers({
 				{place : regexp},
 				{object : regexp},
 				{number : regexp}
-			]} 
+			]}
 	]});
   },
+
+  notOwner(object_id) {
+    return Objects.findOne({_id:object_id}).owner != Meteor.userId();
+  }
+
 });
 
 Template.search.events({
@@ -28,7 +34,7 @@ Template.search.events({
 	event.preventDefault();
 	// Puts the query in the session
 	Session.set('search/keyword', event.target.text.value);
-	
+
   },
   // For researching as soon as the input changes
   'keyup .queryTerm': function(event) {

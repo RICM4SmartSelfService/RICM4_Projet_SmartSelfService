@@ -1,9 +1,13 @@
 <template name='deposit'>
 	<h1>Select a free locker</h1>
 	<ul>
-	{{#each freeLockers}}
-		{{>locker}}
-	{{/each}}
+	{{#unless freeLockers}}
+		No locker available.
+	{{else}}
+		{{#each freeLockers}}
+			{{>locker}}
+		{{/each}}
+	{{/unless}}
 	</ul>
 </template>
 

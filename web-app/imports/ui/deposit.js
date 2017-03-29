@@ -5,7 +5,16 @@ import { Lockers } from '../api/lockers.js';
 
 Template.deposit.helpers({
 	freeLockers(){
-		return Lockers.find({available : true});
+		return Lockers.find({
+			$and : [
+				{available : true}, {
+					$or : [
+						{object : {$exists: false} },
+						{object : ""},
+						{object : null}
+					]
+				}
+			]}).fetch();
 	},
 });
 
