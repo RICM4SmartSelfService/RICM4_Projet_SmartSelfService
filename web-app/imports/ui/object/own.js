@@ -27,7 +27,9 @@ Template.MyObjectsList.helpers({
   
   // Returns if the object is in an available locker
   available(obj_id){
-	return Lockers.findOne({object : obj_id}).available;
+	var locker =  Lockers.findOne({object : obj_id})
+	if(locker) return locker.available;
+	return false;
   }
 
 });
