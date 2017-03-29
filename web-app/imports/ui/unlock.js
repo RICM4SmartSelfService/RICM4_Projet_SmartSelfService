@@ -37,7 +37,7 @@ Template.unlock.events({
 			//console.log(locker.who);
 			var user = Accounts.users.findOne({_id : locker.who});
 
-      #TODO edit this part when esp8266 is setup + update histo of object
+      //TODO edit this part when esp8266 is setup + update histo of object
 			// Updating the locker
 			if(locker.pending == "take"){
 				Lockers.update(id, { $set : {object : null, available : true}});
