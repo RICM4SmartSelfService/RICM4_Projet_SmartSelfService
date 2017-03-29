@@ -28,6 +28,7 @@
 	{{#if showQR}}
 		<button class='toggleQR'>Hide QR code</button>
 		<div class='QRcode'>
+			{{id}}
 			{{> QRCode text=URL size="128px"}}
 		</div>
 	{{else}}

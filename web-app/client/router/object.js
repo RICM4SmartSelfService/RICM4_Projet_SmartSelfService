@@ -19,6 +19,14 @@ Router.route('/object/dropoff/:_id',function() {
   this.render('DropOffObject');
 }, { name : 'object.dropoff' });
 
+Router.route('/object/dropoff/reserved/:_id', function() {
+  if(!Meteor.user()) {
+    alert("Vous devez vous connecter avant d'effectuer cette action");
+    Router.go('user.login');
+  }
+	this.render('DropReserved');
+}, { name : 'locker.reserve' });
+
 Router.route('/object/deposit', function() {
   if(!Meteor.user()) {
     alert("Vous devez vous connecter avant d'effectuer cette action");
