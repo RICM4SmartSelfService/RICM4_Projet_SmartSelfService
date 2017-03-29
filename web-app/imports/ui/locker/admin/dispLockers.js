@@ -43,7 +43,6 @@ Template.dispQR.helpers({
 		return 'http://localhost:3000/unlock/'+this.id;
 	},
 	showQR(){
-		console.log(this.id);
 		return (this.id==Session.get('dispLockers/QRid'));
 	}
 });

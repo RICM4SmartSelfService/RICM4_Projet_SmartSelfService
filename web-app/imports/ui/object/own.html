@@ -1,56 +1,65 @@
 <template name='MyObjectsList'>
 
-<div class="row">
-  <div class="col-sm-6">
-    <h1>My objects</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>My objects</h1>
 
-    {{#each myObjs}}
+      {{#each myObjs}}
       {{#if status history != "takeoff"}}
       <div class="panel
 
-        panel-default
+      panel-default
 
-        {{#if block}}
-          panel-warning
-        {{/if}}
-
-        ">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            {{name}}
-            <span class="align-right" title="Pickup date">
-              <i class="glyphicon glyphicon-calendar"></i>
-              {{toDate pickup_date}}
-            </span>
-          </h3>
-        </div>
-        <div class="panel-body">
-          {{description}}
-        </div>
-        <div class="panel-footer">
-          {{status history}}
-          {{#if block}}
-          Item is locked for next pickup.
-          {{else}}
-            <button type="button" class="block btn btn-xs btn-danger align-right" value="{{_id}}">LOCK</button>
-          {{/if}}
-        </div>
-      </div>
+      {{#if block}}
+      panel-warning
       {{/if}}
+
+      ">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {{name}}
+          <span class="align-right" title="Pickup date">
+            <i class="glyphicon glyphicon-calendar"></i>
+            {{toDate pickup_date}}
+          </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        {{description}}
+      </div>
+      <div class="panel-footer">
+        {{status history}}
+        <!-- If the item is not brougth back -->
+        {{#unless back}}
+        <!-- blocked and available, display the "GET IT BACK" button -->
+        {{#if block}}
+          {{#if available _id}}
+            Item is available and blocked for you.
+            <button type="button" class="getBack btn btn-success" value="{{_id}}">GET IT BACK</button>
+          {{else}}
+            Item is locked for next pickup.
+          {{/if}}
+        {{else}}
+          <button type="button" class="block btn btn-danger" value="{{_id}}">LOCK</button>
+        {{/if}}
+        {{/unless}}
+      </div>
+    </div>
+    {{/if}}
     {{/each}}
   </div>
   <div class="col-sm-6">
     <h1>Borrowed Objects</h1>
     {{#each borrowedObjs}}
-      <h2>{{name}} <small>Bring back before : {{toDate pickup_date}}</small></h2>
-      <p>
-        {{description}}
-      </p>
-      {{#if back}}
-        You will be able to bring back this item as soon as you want.
-      {{else}}
-        <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
-      {{/if}}
+    <h2>{{name}} <small>Bring back before : {{toDate pickup_date}}</small></h2>
+    <p>
+      {{description}}
+    </p>
+    {{#if back}}
+    You will be able to bring back this item as soon as you want.
+    {{else}}
+    <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
+    {{/if}}
     {{/each}}
   </div>
 </div>
