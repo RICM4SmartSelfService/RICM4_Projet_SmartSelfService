@@ -1,8 +1,12 @@
 <template name='home'>
 	<h3>Bienvenue {{currentUser.profile.firstname}} {{currentUser.profile.lastname}}</h3>
 	<ul>
-		<li><a href="/addLocker">Add a locker</a></li>
-		<li><a href="/deposit">Leave an object</a></li>
-		<li><a href="/actions">See my actions</a></li>
+		{{#if currentUser}}
+			{{#if isAdmin}}
+			<li><a href="/addLocker">Add a locker</a></li>
+			{{/if}}
+			<li><a href="/deposit">Leave an object</a></li>
+			<li><a href="/actions">See my actions</a></li>
+		{{/if}}
 	</ul>
 </template>
