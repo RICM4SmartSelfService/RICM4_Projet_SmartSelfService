@@ -8,8 +8,11 @@ Template.actions.helpers({
 	actions() {
 		var user = Meteor.user();
 		if(user){
-			return user.actions;
+			if(user.actions){
+				return user.actions;				
+			}
 		}
+		return [];
 	}
 });
 

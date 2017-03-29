@@ -30,9 +30,26 @@ Template.unlock.events({
 		event.preventDefault();
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(template.my_locker.get().code)==0){
-
+			
 			var id = Router.current().params.id;
 			var locker = Lockers.findOne({_id: id});
+			
+			var url = 'http://' + locker.IP + '/mode/5/o';
+			console.log(url);
+			HTTP.get(url,{},function() {
+				url = 'http://' + locker.IP + '/display/5/1';
+				HTTP.get( url,{},function(){
+					template.success.set(true);
+					template.lastError.set("");
+					setTimeout(function(){
+						url = 'http://' + locker.IP + '/display/5/0';
+						HTTP.get(url,{},function(){});
+					}, 2000);
+				});				
+			} );
+			
+			
+			
 			//console.log(locker);
 			//console.log(locker.who);
 			var user = Accounts.users.findOne({_id : locker.who});
@@ -62,18 +79,7 @@ Template.unlock.events({
 				$set : {"code" : newcode}
 			});
 
-			var url = 'http://' + locker.ip + '/mode/5/o';
-			HTTP.get(url,{},null);
-			url = 'http://' + locker.ip + '/display/5/1';
-			HTTP.get( url,{},function(){
-				template.success.set(true);
-				template.lastError.set("");
-			});
-
-			setTimeout(function(){
-				url = 'http://' + locker.ip + '/display/5/0';
-				HTTP.get(url,{},null);
-			}, 2000);
+			
 
 		} else {
 			// Setting an error to display it to the user

@@ -74,7 +74,6 @@ Template.dropOffObject.events({
 				"actions" : {
 					"type" : "drop",
 					"locker" : locker_id,
-          "object" : obj,
 					"code" :  locker.code,
 				}
 			}
