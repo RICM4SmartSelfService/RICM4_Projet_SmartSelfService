@@ -1,0 +1,24 @@
+<template name='dispLockers'>
+	<form class="navbar-form query" role="search">
+    <div class="input-group">
+        <input type="text" class="form-control queryTerm" placeholder="Filter" name="text">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+  </form>
+
+    <br />
+    <ul>
+	{{#each lockers}}
+		<li>
+			{{number}} ({{place}}) : {{>dispobject obj_id=object}} [{{IP}}] {{state}}
+			{{#if available}}
+				Available
+			{{else}}
+				Action pending : {{pending}}
+			{{/if}}
+		</li>
+	{{/each}}
+	</ul>
+</template>

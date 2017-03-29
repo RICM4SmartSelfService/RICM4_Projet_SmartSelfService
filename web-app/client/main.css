@@ -15,6 +15,10 @@ header {
 	color : white;
 }
 
+.QRcode{
+	margin : 30px;
+}
+
 content {
     width:960px;
     background: #F0F0F0;

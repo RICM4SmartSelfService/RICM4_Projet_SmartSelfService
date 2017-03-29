@@ -8,7 +8,7 @@ Template.added.helpers({
 		return Session.get('addLocker/lastID');
 	},
 	URLcode(){
-		return 'http://localhost:3000/unlock?id='+Session.get('addLocker/lastID');
+		return 'http://localhost:3000/unlock/'+Session.get('addLocker/lastID');
 	},
 });
 
