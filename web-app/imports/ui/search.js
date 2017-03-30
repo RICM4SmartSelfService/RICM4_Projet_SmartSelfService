@@ -59,7 +59,6 @@ Template.search.events({
 	},
 	// When we click on the takeoff button, takes you to the next page for confimation
   'click .Goto' : function(event){
-	console.log(event.target.id);
 	var id = event.target.id;
 	Router.go('object.takeoff', { _id : id });
   },
