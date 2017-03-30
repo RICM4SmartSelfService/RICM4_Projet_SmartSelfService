@@ -13,6 +13,11 @@ Template.actions.helpers({
 			}
 		}
 		return [];
+	},
+	realCode(id_locker){
+		var locker = Lockers.findOne({ _id : id_locker});
+		if(locker) return locker.code;
+		return null;
 	}
 });
 

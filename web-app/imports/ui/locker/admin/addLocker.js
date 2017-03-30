@@ -20,7 +20,7 @@ Template.addLocker.events({
         var place = $('[name=place]').val();
         var IP = $('[name=IP]').val();
 		var newcode = Math.floor(1000 + Math.random() * 9000).toString();
-		console.log(newcode);
+		var adcode = Math.floor(1000 + Math.random() * 9000).toString();
 
 		var ID = Lockers.insert(
 			{
@@ -31,6 +31,7 @@ Template.addLocker.events({
 				state : "closed",
 				available : true,
 				code : newcode,
+				admincode : adcode,
 			}
 		);
 		Session.set('addLocker/lastID',ID);
