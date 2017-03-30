@@ -2,26 +2,21 @@
 body {
 	min-width:500px;
 	margin: auto;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 header {
 	background: #d2edf4;
 	background-image: linear-gradient(to bottom, #59d8ff, #3789a3 100%);
-	padding: 15px 15px 15px 15px;
 	position: relative;
 	border:1px solid #CCC;
 }
 
-header, nav {
-	margin-left: -10px;
-	margin-right: -10px;
+header h1 {
+	margin-left: 10px;
 }
 
 .myheader {
 	position : relative;
-	left : 50px;
 	color : white;
 }
 
@@ -39,7 +34,6 @@ content {
 
 .query{
   width:500px;
-  margin:10px;
   width:230px;
   position:relative;
 }
@@ -59,4 +53,8 @@ content {
 
 .transp {
 	opacity: 0.5;
+}
+
+.row {
+	margin : 0px;
 }

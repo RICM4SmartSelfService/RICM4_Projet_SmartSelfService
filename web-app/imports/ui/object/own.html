@@ -56,15 +56,45 @@
   <div class="col-sm-6">
     <h1>Borrowed Objects</h1>
     {{#each borrowedObjs}}
-    <h2>{{name}} <small>Bring back before : {{toDate pickup_date}}</small></h2>
-    <p>
-      {{description}}
-    </p>
-    {{#if bringback}}
-    You will be able to bring back this item as soon as you want.
+    <div class="panel
+
+    panel-default
+
+    {{#if block}}
+      panel-danger
     {{else}}
-    <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-warning">BRING BACK</a>
+      {{#if bringback}}
+        panel-warning
+      {{else}}
+        panel-success
+      {{/if}}
     {{/if}}
+
+    ">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {{name}}
+          <span class="align-right" title="Latest bring back date">
+            <i class="glyphicon glyphicon-calendar"></i>
+            {{toDate pickup_date}}
+          </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        {{description}}
+      </div>
+      <div class="panel-footer">
+        {{#if block}}
+          The owner wants its item back.
+        {{/if}}
+        {{#if bringback}}
+          Locker reserved to bring back : <a href="{{pathFor route='user.actions'}}">actions</a>.
+        {{else}}
+          You have the item.
+          <a href="{{pathFor route='object.bringback' data='{ _id : {{_id}}'  }}/object/bringback/{{_id}}" class="btn btn-xs btn-warning align-right">BRING BACK</a>
+        {{/if}}
+      </div>
+    </div>
     {{/each}}
   </div>
 </div>

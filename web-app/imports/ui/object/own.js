@@ -7,13 +7,13 @@ import './own.html';
 Template.MyObjectsList.helpers({
 
   myObjs(){
-    const myObjs = Objects.find({owner : Meteor.userId()}).fetch();
+    const myObjs = Objects.find({owner : Meteor.userId()}, {sort : {"pickup_date" : -1}}).fetch();
     //console.log(myObjs);
     return myObjs;
   },
 
   borrowedObjs() {
-    const borrowedObjs = Objects.find({borrower : Meteor.userId()}).fetch();
+    const borrowedObjs = Objects.find({borrower : Meteor.userId()}, {sort : {"pickup_date" : 1}}).fetch();
     return borrowedObjs;
   },
 
@@ -24,7 +24,7 @@ Template.MyObjectsList.helpers({
   now() {
     return new Date().getTime();
   },
-  
+
   // Returns if the object is in an available locker
   available(obj_id){
 	var locker =  Lockers.findOne({object : obj_id})
@@ -67,7 +67,7 @@ Template.MyObjectsList.events({
 					}
 				}
 			});
-			
+
 			// Update locker
 			Lockers.update(locker._id,{
 				$set : {
