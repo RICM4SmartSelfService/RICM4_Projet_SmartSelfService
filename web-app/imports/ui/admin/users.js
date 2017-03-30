@@ -20,7 +20,6 @@ Template.users.helpers({
 Template.users.events({
 	'click .makeAdmin' : function(event){
 		var user_id = event.target.id;
-		console.log(user_id);
 		
 		Accounts.users.update({ _id : user_id}, {
 			$push : {
@@ -29,7 +28,6 @@ Template.users.events({
 	},
 	'click .removeAdmin' : function(event){
 		var user_id = event.target.id;
-		console.log(user_id);
 		
 		Accounts.users.update({ _id : user_id}, {
 			$pull : {
