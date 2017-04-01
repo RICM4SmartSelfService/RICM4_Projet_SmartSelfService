@@ -1,14 +1,18 @@
 <template name='home'>
 	<h3>Welcome {{currentUser.profile.firstname}} {{currentUser.profile.lastname}}</h3>
-	<ul>
-		{{#if currentUser}}
-			{{#if isAdmin}}
-			<li><a href="{{pathFor route='locker.new'}}">Add a locker</a></li>
-			<li><a href="{{pathFor route='admin.lockers.display'}}">Display all lockers</a></li>
-			<hr>
-			{{/if}}
-			<li><a href="{{pathFor route='object.dropoff.chooseLocker'}}">Leave an object</a></li>
-			<li><a href="{{pathFor route='user.actions'}}">See my actions</a></li>
-		{{/if}}
-	</ul>
+	<div>
+		<h4>How to use</h4>
+		<p>
+			First of all you should be connected in order to perform any action.<br>
+			To interact with a locker first you need to reserve it for a specific purpose (listed below) then flash the code on the locker and enter the code that has been given to you.<br>
+			Under <b>My Actions</b> is a list of the codes you have access to and a reminder of why you reserved a specific locker.
+		</p>	
+		<ul>
+			<li>You can borrow and object by searching for objects available under <b>Search</b></li>
+			<li>You can leave one of your object by clicking on <b>Drop Off</b>. This object will then be found under the section <b>My objects</b>.</li>
+			<i>The blue number indicates the number of objects you own and that are actually circulating on this platform.
+			The number in orange is the number of objects you have borrowed and that need to be brought back.</i><br>
+			<li>To <b>Bring back</b> a borrowed object or <b>Block</b> one of your objects to pick it up as soon as it is available, go to <b>My Objects</b>.</li>
+		</ul>
+	</div>
 </template>

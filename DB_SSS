@@ -9,6 +9,29 @@
 		"available" : "true",
 		"code" : "1234"
 	}
+	
+	{ 
+	"_id" : "am8YMFcaDLGJWWiXK", 
+	"createdAt" : ISODate("2017-03-29T14:53:55.799Z"), 
+	"services" : { 
+		"password" : { 
+			"bcrypt" : "$2a$10$2.jFjG6XNhqshPhBWOB3aOfWnyJ1IoQ43A7zP5U8RCu9ZN26ex50q" 
+		}, 
+		"resume" : { 
+			"loginTokens" : [ ] 
+		} 
+	}, 
+	"emails" : [ {
+		"address" : "doge@duck.me", "verified" : false 
+	} ], 
+	"profile" : { 
+		"firstname" : "Gilles", 
+		"lastname" : "Bonhoure" 
+	}, 
+	"roles" : [ "user" ], 
+	"actions" : [ ] }
+
+	
 
 	Users :
 	{
