@@ -14,9 +14,7 @@ Template.unlock.onCreated(function() {
 Template.unlock.helpers({
   locker() {
 	var id = Router.current().params._id;
-	console.log(id);
 	var res = Lockers.findOne({_id: id});
-	console.log(res);
 	Template.instance().my_locker.set(res);
 	return res;
   },
@@ -33,13 +31,13 @@ Template.unlock.events({
 		event.preventDefault();
 		// If the code is the right one unlock, else display error message
 		if(event.target.code.value.localeCompare(template.my_locker.get().code)==0){
-			template.success.set(true);
+			template.success.set(true); // Success true to display a success message in the html
 			template.lastError.set("");
 			
 			var id = Router.current().params._id;
 			var locker = Lockers.findOne({_id: id});
 			
-			/*
+			/* CODE THAT COULD BE USED FOR HTTP REQUEST TO THE ESP8266
 			var url = 'http://' + locker.IP + '/mode/5/o';
 			console.log(url);
 			HTTP.get(url,{},function() {
@@ -56,11 +54,10 @@ Template.unlock.events({
 			
 			var user = Accounts.users.findOne({_id : locker.who});
 
-			// Updating the locker
+			// Updating the locker and history of the object
 			if(locker.pending){
 				const d_now = Date.now();
 				if(locker.pending.localeCompare("take")==0){
-					console.log('Taking');
 					Lockers.update(id, {
 						$set : {
 							object : null,
@@ -68,8 +65,6 @@ Template.unlock.events({
 							pending : null,
 							who : null
 					}});
-					
-					console.log('Update object');
 					Objects.update(locker.object,{
 						$push : { history : {
 							  time : d_now,
@@ -79,7 +74,7 @@ Template.unlock.events({
 						}}
 					});				
 				} else if(locker.pending == "drop"){
-					console.log('Droping');
+					
 					Lockers.update(id, {
 						$set : {
 							available : true,
@@ -87,7 +82,6 @@ Template.unlock.events({
 							who : null
 					}});
 					
-					console.log('Update object');
 					Objects.update(locker.object,{
 						$push : { history : {
 							  time : d_now,
@@ -97,7 +91,7 @@ Template.unlock.events({
 						}}
 					});		
 				} else if (locker.pending == "get back") {
-					console.log('Getting back');
+					
 					Lockers.update(id, {
 						$set : {
 							object : null,
@@ -106,7 +100,6 @@ Template.unlock.events({
 							who : null
 					}});
 					
-					console.log('Update object');
 					Objects.update(locker.object,{
 						$push : { history : {
 							  time : d_now,
@@ -119,7 +112,7 @@ Template.unlock.events({
 						$set : { block : false, back : true }
 					});
 				} else if (locker.pending == "bring back") {
-					console.log('Bringing back');
+					
 					Lockers.update(id, {
 						$set : {
 							available : true,
@@ -127,7 +120,6 @@ Template.unlock.events({
 							who : null
 					}});
 					
-					console.log('Update object');
 					Objects.update(locker.object,{
 						$push : { history : {
 							  time : d_now,
@@ -147,25 +139,26 @@ Template.unlock.events({
 			}
 
 			if(user){
-				// Removing the action from the user's list
+				// Removing the action from the user's list if the user's found
 				Accounts.users.update({ _id : user._id},
 					  { $pull: { "actions" : {locker : id}}});
 			}
 			
-			console.log('Free');
 			// Randomly generate a new code
 			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
 			Lockers.update(id, { // Adding it into the DB
 				$set : {"code" : newcode}
 			});
 
-		} else if (event.target.code.value.localeCompare(template.my_locker.get().admincode)==0) {
+		} // If the unlock code is the one used by the admin, change the code but don't change the Databases. 
+		else if (event.target.code.value.localeCompare(template.my_locker.get().admincode)==0) {
 			template.success.set(true);
 			template.lastError.set("");
 			
 			//TODO//
-			// Unlock the locker
+			// Unlock the locker //
 			
+			var id = Router.current().params._id;
 			var newcode =(Math.floor(1000 + Math.random() * 9000)).toString();
 			Lockers.update(id, { // Adding it into the DB
 				$set : {"admincode" : newcode}

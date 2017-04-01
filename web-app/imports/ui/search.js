@@ -13,15 +13,17 @@ Template.search.helpers({
   	var objects_id = Objects.find({
   			$and : [
   			{ name : regexp },
-  			{ block : { $ne : true} }
+  			{ block : { $ne : true} },
   		]}).map(function(a){return a._id;});
 
 	var not_blocked = Objects.find({
-		 block : { $ne : true}
-  		}).map(function(a){return a._id;});
+		$and : [
+			 {block : { $ne : true}},
+			 {owner : { $ne : Meteor.userId()}}
+		]}).map(function(a){return a._id;});
   		
   	// Searches in the locker name, number and content but only if it has an object that is pickable (available)
-  	return Lockers.find({
+  	var res =  Lockers.find({
   		$and : [
   			{ available : true},
   			{ object : { $exists: true, $ne: null, $in : not_blocked } },
@@ -31,10 +33,7 @@ Template.search.helpers({
   				{object : { $in : objects_id } } // Object with name
   			]}
   	]});
-  },
-
-  notOwner(object_id) {
-    return Objects.findOne({_id:object_id}).owner != Meteor.userId();
+  	return res.fetch();
   },
 
   getPickupDate(object_id) {

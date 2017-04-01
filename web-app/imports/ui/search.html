@@ -7,7 +7,7 @@
         </div>
     </div>
   </form>
-
+	{{#if lockers}}
 	<table class="table table-striped table-hover">
 		<thead>
 			<th>
@@ -20,42 +20,37 @@
 				Content
 			</th>
 			<th>
-				Bring Back
+				Available until
 			</th>
 			<th>
-				State
-			</th>
-			<th>
-				Takeoff
+				Borrow this item
 			</th>
 		</thead>
 		<tbody>
 			{{#each lockers}}
-				{{#if notOwner object}}
-					<tr>
-						<td>
-							{{number}}
-						</td>
-						<td>
-							{{place}}
-						</td>
-						<td>
-							{{>dispobject obj_id=object}}
-						</td>
-						<td>
-							{{getPickupDate object}}
-						</td>
-						<td>
-							{{state}}
-						</td>
-						<td>
-							{{#if object}}
-							<button class="Goto btn btn-xs btn-default" id="{{_id}}">TakeOff</button>
-							{{/if}}
-						</td>
-					</tr>
-				{{/if}}
+				<tr>
+					<td>
+						{{number}}
+					</td>
+					<td>
+						{{place}}
+					</td>
+					<td>
+						{{>dispobject obj_id=object}}
+					</td>
+					<td>
+						{{getPickupDate object}}
+					</td>
+					<td>
+						{{#if object}}
+						<button class="Goto btn btn-xs btn-default" id="{{_id}}">More infos</button>
+						{{/if}}
+					</td>
+				</tr>
 			{{/each}}
 		</tbody>
 	</table>
+	{{else}}
+		Aucuns objets disponibles dans les casiers
+	{{/if}}
 </template>

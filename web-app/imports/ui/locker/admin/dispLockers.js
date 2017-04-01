@@ -18,7 +18,7 @@ Template.dispLockers.helpers({
 		 $or : [ // Search for either one of the 3
 			{place : regexp},
 			{number : regexp},
-			{object : { $in : objects_id } } // Object with name
+			{object : { $in : objects_id } } // Object with name in the list above
 	]});
   },
 });
@@ -40,7 +40,7 @@ Template.dispLockers.events({
 
 Template.dispQR.helpers({
 	URL(){
-		return 'http://localhost:3000/unlock/'+this.id;
+		return 'http://localhost:3000/locker/unlock/'+this.id;
 	},
 	showQR(){
 		return (this.id==Session.get('dispLockers/QRid'));

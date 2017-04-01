@@ -64,7 +64,7 @@
 						{{/if}}
 					</td>
 					<td>
-						{{code}}
+						{{admincode}}
 					</td>
 					<td>
 						{{> dispQR id=_id}}
@@ -81,6 +81,7 @@
 		<div class='QRcode'>
 			{{id}}
 			{{> QRCode text=URL size="128px"}}
+			<a href={{URL}}>Unlocking page</a>
 		</div>
 	{{else}}
 	<button class='toggleQR btn btn-xs btn-default'>Show QR code</button>
