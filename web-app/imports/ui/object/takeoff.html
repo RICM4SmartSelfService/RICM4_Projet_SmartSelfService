@@ -1,17 +1,33 @@
 <template name='takeoff'>
-	<h1>Locker {{locker.number}}</h1>
-	<h3>{{locker.place}}</h3>
-	{{>objectInfo obj_id=locker.object}}	
-	<button class='Reserve' id="{{locker._id}}">Reserve</button>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+			<h1 style="text-align:center;">Locker {{locker.number}} | <small>{{locker.place}}</small></h1>
+			{{>objectInfo obj_id=locker.object}}
+			<button class='Reserve btn btn-primary btn-block' id="{{locker._id}}">Reserve</button>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
 </template>
 
 <template name='objectInfo'>
-	<ul>
-		<li>Content : {{object.name}}</li>
-		<li>Description : {{object.description}}</li>
-		<li>Bring back before : {{toDate object.pickup_date}}</li>
-		<li>Owner : {{owner.profile.firstname}} {{owner.profile.lastname}}</li>
-	</ul>
+	<div class="panel panel-defautl">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				{{object.name}}
+				<span class="align-right" title="Latest bring back date">
+					<i class="glyphicon glyphicon-calendar"></i>
+					{{toDate object.pickup_date}}
+				</span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			{{object.description}}
+		</div>
+		<div class="panel-footer">
+			Owner : {{owner.profile.firstname}} {{owner.profile.lastname}}
+		</div>
+	</div>
 </template>
 
 
