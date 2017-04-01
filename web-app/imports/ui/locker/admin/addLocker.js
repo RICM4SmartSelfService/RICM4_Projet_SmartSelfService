@@ -4,24 +4,35 @@ import { Lockers } from '/imports/api/lockers.js';
 import { Session } from 'meteor/session';
 
 Template.added.helpers({
+
 	id(){
 		return Session.get('addLocker/lastID');
 	},
+
+	/**
+	 * @returns a full unlock url
+	 */
 	URLcode(){
 		return 'http://localhost:3000/unlock/'+Session.get('addLocker/lastID');
 	},
 });
 
 Template.addLocker.events({
+
+	/**
+   * creates a locker with the data transmitted by the form
+	 */
 	'submit .new-locker' : function(event, template) {
 		event.preventDefault();
 
-        var number = $('[name=number]').val();
-        var place = $('[name=place]').val();
-        var IP = $('[name=IP]').val();
+		/* Getting all the form's data */
+    var number = $('[name=number]').val();
+    var place = $('[name=place]').val();
+    var IP = $('[name=IP]').val();
 		var newcode = Math.floor(1000 + Math.random() * 9000).toString();
 		var adcode = Math.floor(1000 + Math.random() * 9000).toString();
 
+		/* Inserting the new locker in the collection */
 		var ID = Lockers.insert(
 			{
 				number : number,

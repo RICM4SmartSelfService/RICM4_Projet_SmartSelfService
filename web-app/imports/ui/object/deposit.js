@@ -4,6 +4,10 @@ import { Lockers } from '/imports/api/lockers.js';
 
 
 Template.deposit.helpers({
+
+	/**
+	 * @returns the available lockers
+	 */
 	freeLockers(){
 		return Lockers.find({
 			$and : [
@@ -20,8 +24,10 @@ Template.deposit.helpers({
 
 
 Template.deposit.events({
+
 	'click .ChooseLocker' : function(event){
 		var lock_id = event.target.id;
 		Router.go('object.dropoff', { _id : lock_id });
 	}
+
 });
