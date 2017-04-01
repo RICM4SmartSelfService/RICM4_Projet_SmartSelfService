@@ -3,13 +3,13 @@
 	<div>
 		<h4>How to use</h4>
 		<p>
-			First of all you should be connected in order to perform any action.<br>
+			{{#unless currentUser}}First of all you should be connected in order to perform any action.<br>{{/unless}}
 			To interact with a locker first you need to reserve it for a specific purpose (listed below) then flash the code on the locker and enter the code that has been given to you.<br>
 			Under <b>My Actions</b> is a list of the codes you have access to and a reminder of why you reserved a specific locker.
-		</p>	
+		</p>
 		<ul>
-			<li>You can borrow and object by searching for objects available under <b>Search</b></li>
-			<li>You can leave one of your object by clicking on <b>Drop Off</b>. This object will then be found under the section <b>My objects</b>.</li>
+			<li>You can borrow an object by searching for objects available under <b>Search</b></li>
+			<li>You can leave one of your objects by clicking on <b>Drop Off</b>. This object will then be found under the section <b>My objects</b>.</li>
 			<i>The blue number indicates the number of objects you own and that are actually circulating on this platform.
 			The number in orange is the number of objects you have borrowed and that need to be brought back.</i><br>
 			<li>To <b>Bring back</b> a borrowed object or <b>Block</b> one of your objects to pick it up as soon as it is available, go to <b>My Objects</b>.</li>
