@@ -4,7 +4,7 @@ import '/imports/ui/admin/users.js';
 
 Router.route('/admin/lockers', function() {
   if(!Meteor.user() || Meteor.user().roles.indexOf("admin") < 0) {
-    alert("Vous devez être admin pour accéder à cette page.");
+    alert("You have to be admin to access this page.");
     Router.go('user.login');
   }
   this.render('dispLockers');
@@ -13,7 +13,7 @@ Router.route('/admin/lockers', function() {
 
 Router.route('/locker/new', function() {
   if(!Meteor.user() || Meteor.user().roles.indexOf("admin") < 0) {
-    alert("Vous devez être admin pour accéder à cette page.");
+    alert("You have to be admin to access this page.");
     Router.go('user.login');
   }
 	this.render('AddLocker');
@@ -21,7 +21,7 @@ Router.route('/locker/new', function() {
 
 Router.route('/locker/confirmation', function() {
   if(!Meteor.user() || Meteor.user().roles.indexOf("admin") < 0) {
-    alert("Vous devez être admin pour accéder à cette page.");
+    alert("You have to be admin to access this page.");
     Router.go('user.login');
   }
 	this.render('added');
@@ -29,7 +29,7 @@ Router.route('/locker/confirmation', function() {
 
 Router.route('/admin/users', function() {
   if(!Meteor.user() || Meteor.user().roles.indexOf("admin") < 0) {
-    alert("Vous devez être admin pour accéder à cette page.");
+    alert("You have to be admin to access this page.");
     Router.go('user.login');
   }
 	this.render('users');

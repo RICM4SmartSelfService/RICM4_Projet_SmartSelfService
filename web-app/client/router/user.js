@@ -3,7 +3,7 @@ import '/imports/ui/user/actions.js';
 
 Router.route('/user/objects',function() {
   if(!Meteor.user()) {
-    alert("Vous devez vous connecter avant d'effectuer cette action");
+    alert("You have to be connected to perform this action.");
     Router.go('user.login');
   }
   this.render('MyObjectsList');
@@ -11,5 +11,9 @@ Router.route('/user/objects',function() {
 
 
 Router.route('/user/actions', function(){
+  if(!Meteor.user()) {
+    alert("You have to be connected to perform this action.");
+    Router.go('user.login');
+  }
 	this.render('Actions');
 }, { name : 'user.actions' });

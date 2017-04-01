@@ -1,7 +1,7 @@
 
 import '/imports/ui/menu.js';
 
-import '/imports/startup/accounts-config.js';
+import '/imports/api/accounts-config.js';
 
 /* register of helpers available anywhere in the code */
 import './helpers.js';

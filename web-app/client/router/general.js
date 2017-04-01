@@ -23,7 +23,7 @@ Router.route('/login', function () {
 
 Router.route('/search', function () {
   if(!Meteor.user()) {
-    alert("Vous devez vous connecter avant d'effectuer cette action");
+    alert("You have to be connected to perform this action.");
     Router.go('user.login');
   }
   this.render('Search');
