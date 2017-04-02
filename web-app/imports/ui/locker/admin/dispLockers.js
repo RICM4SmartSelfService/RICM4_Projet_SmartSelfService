@@ -6,6 +6,10 @@ import { Session } from 'meteor/session';
 
 
 Template.dispLockers.helpers({
+
+  /**
+   * @returns a list of lockers matching the query
+   */
   lockers() {
 	var regexp = new RegExp(Session.get('dispLockers/keyword'), 'i');
 
@@ -24,35 +28,46 @@ Template.dispLockers.helpers({
 });
 
 Template.dispLockers.events({
-  'submit .query': function(event) {
-	// Prevents the browser from recharging
-	event.preventDefault();
-	// Puts the query in the session
-	Session.set('dispLockers/keyword', event.target.text.value);
 
+  'submit .query': function(event) {
+  	// Prevents the browser from recharging
+  	event.preventDefault();
+  	// Puts the query in the session
+  	Session.set('dispLockers/keyword', event.target.text.value);
   },
-  // For researching as soon as the input changes
+
+  /**
+   * For researching as soon as the input changes
+   */
   'keyup .queryTerm': function(event) {
-	// Puts the query in the session
-	Session.set('dispLockers/keyword', event.target.value);
+  	// Puts the query in the session
+  	Session.set('dispLockers/keyword', event.target.value);
 	},
 });
 
 Template.dispQR.helpers({
-	URL(){
+
+  URL(){
 		return 'http://localhost:3000/locker/unlock/'+this.id;
 	},
-	showQR(){
+
+  showQR(){
 		return (this.id==Session.get('dispLockers/QRid'));
 	}
+
 });
 
 Template.dispQR.events({
+
+  /**
+   * Show and hide a QrCode
+   */
   'click .toggleQR' : function(event){
-	if(this.id==Session.get('dispLockers/QRid')){
-		Session.set('dispLockers/QRid',null);
-	} else {
-		Session.set('dispLockers/QRid',this.id);
-	}
+  	if(this.id==Session.get('dispLockers/QRid')){
+  		Session.set('dispLockers/QRid',null);
+  	} else {
+  		Session.set('dispLockers/QRid',this.id);
+  	}
   },
+
 });
