@@ -5,6 +5,10 @@ import { Objects } from '/imports/api/objects.js';
 import './actions.html';
 
 Template.actions.helpers({
+
+	/**
+	 * @returns all the actions pending for the current user.
+	 */
 	actions() {
 		var user = Meteor.user();
 		if(user){
@@ -14,11 +18,16 @@ Template.actions.helpers({
 		}
 		return [];
 	},
+
+	/**
+	 * @returns the code needed to unlock a locker
+	 */
 	realCode(id_locker){
 		var locker = Lockers.findOne({ _id : id_locker});
 		if(locker) return locker.code;
 		return null;
 	}
+
 });
 
 Template.dispaction.helpers({

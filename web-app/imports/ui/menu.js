@@ -5,6 +5,9 @@ import './menu.html';
 
 Template.menu.events ({
 
+  /**
+   * logout function
+   */
   'click #menu-logoff': function(e){
     e.preventDefault();
     Accounts.logout();
@@ -15,6 +18,9 @@ Template.menu.events ({
 
 Template.menu.helpers({
 
+  /**
+   * @returns the number of objets owned by the current user that are still available in a locker or are currently borrowed by someone.
+   */
   nbObjAvailable() {
     const items = Objects.find({owner : Meteor.userId()}).fetch();
     var count = 0;
@@ -24,6 +30,9 @@ Template.menu.helpers({
     return count;
   },
 
+  /**
+   * @returns the number of objects borrowed by the current user he still have to bring back.
+   */
   nbBorrowObj() {
     return Objects.find({borrower : Meteor.userId()}).fetch().length;
   },
