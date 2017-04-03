@@ -5,9 +5,9 @@
 		<h4 class="unlock_success">Locker {{locker.number}} is unlocked.</h4>
     {{else}}
 		<h3>To unlock, enter the 4 digits code</h3>
-		<form class="codeForm form-group">
+		<form class="codeForm form-group" action="submit">
 			<input type="tel" pattern="^[0-9]{4}$" name="code" autocomplete="off" class="form-control"/>
-			<button type="button" name="button" action="submit" class="btn btn-primary btn-block">Validate</button>
+			<button name="button" type="submit" class="btn btn-primary btn-block">Validate</button>
 		</form>
 		{{#if errorMessage}}
 			<h4 class="unlock_error">{{errorMessage}}</h4>
